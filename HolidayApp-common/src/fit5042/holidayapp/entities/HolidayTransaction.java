@@ -6,6 +6,7 @@
 package fit5042.holidayapp.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,14 +20,15 @@ import javax.persistence.Id;
 public class HolidayTransaction implements Serializable{
     private int transactionNo;
     private String name;
-    private String type;
+    private ProductType type;
     private HolidayPublic customer;
     private String description;
+    private Calendar timestamp;
 
     public HolidayTransaction() {
     }
 
-    public HolidayTransaction(int transactionNo, String name, String type, HolidayPublic customer, String description) {
+    public HolidayTransaction(int transactionNo, String name, ProductType type, HolidayPublic customer, String description) {
         this.transactionNo = transactionNo;
         this.name = name;
         this.type = type;
@@ -52,11 +54,11 @@ public class HolidayTransaction implements Serializable{
         this.name = name;
     }
 
-    public String getType() {
+    public ProductType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ProductType type) {
         this.type = type;
     }
 

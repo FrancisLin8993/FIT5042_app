@@ -21,7 +21,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class HolidayUser implements Serializable{
-
+    private UserType type;
     private int userId;
     private String lastName;
     private String firstName;
