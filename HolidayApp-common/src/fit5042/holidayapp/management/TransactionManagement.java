@@ -5,7 +5,11 @@
  */
 package fit5042.holidayapp.management;
 
+import fit5042.holidayapp.entities.HolidayTransaction;
+import fit5042.holidayapp.entities.TransactionType;
+import java.util.List;
 import javax.ejb.Remote;
+
 
 /**
  *
@@ -13,5 +17,11 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface TransactionManagement {
+    
+    public HolidayTransaction findTransactionById(int id);
+    
+    public List<HolidayTransaction> findTransactionByName(String name);
+    
+    public List<HolidayTransaction> findTransactionByType(TransactionType type);
     
 }

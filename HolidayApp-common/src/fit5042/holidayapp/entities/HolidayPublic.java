@@ -6,7 +6,10 @@
 package fit5042.holidayapp.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -15,4 +18,14 @@ import javax.persistence.Entity;
 @Entity
 public class HolidayPublic extends HolidayUser implements Serializable{
     
+    private Set<HolidayTransaction> order;
+
+    @OneToMany(mappedBy = "public", fetch = FetchType.LAZY)
+    public Set<HolidayTransaction> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<HolidayTransaction> order) {
+        this.order = order;
+    }
 }

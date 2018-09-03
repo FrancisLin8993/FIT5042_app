@@ -6,6 +6,7 @@
 package fit5042.holidayapp.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -15,7 +16,12 @@ public class Product implements Serializable{
     
     private int Id;
     private String productName;
-    private ProductType type;
     private String description;
+    private String hotelName;
+    private String airlineName;
+    private Date startDate;
+    private Date endDate;
+    private double price;
+    
     
 }

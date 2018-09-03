@@ -5,6 +5,7 @@
  */
 package fit5042.holidayapp.management;
 
+import fit5042.holidayapp.entities.HolidayUser;
 import javax.ejb.Remote;
 
 /**
@@ -13,5 +14,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface UserManagement {
+    public HolidayUser findUserById(int id);
+    
     
 }

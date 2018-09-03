@@ -5,10 +5,17 @@
  */
 package fit5042.holidayapp.management;
 
+import fit5042.holidayapp.entities.HolidayUser;
+
 /**
  *
  * @author fengcilin
  */
 public class UserManagementBean implements UserManagement{
+
+    @Override
+    public HolidayUser findUserById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
