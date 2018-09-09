@@ -8,6 +8,7 @@ package fit5042.holidayapp.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,14 +26,11 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({@NamedQuery(name = HolidayTransaction.FIND_ALL, query = "SELECT t FROM HolidayTransaction t"),
-@NamedQuery(name = HolidayTransaction.FIND_BY_NAME, query = "SELECT t FROM HolidayTransaction t WHERE t.name=:name"),
-@NamedQuery(name = HolidayTransaction.FIND_BY_TYPE, query = "SELECT t FROM HolidayTransaction t WHERE t.type=:type")
+@NamedQuery(name = HolidayTransaction.FIND_BY_CONDITION, query = "SELECT t FROM HolidayTransaction t WHERE t.transactionNo=:id AND t.name LIKE :name AND t.type=:type"),
 })
 public class HolidayTransaction implements Serializable{
     public final static String FIND_ALL = "Transaction.findAll";
-    public final static String FIND_BY_NAME = "Transaction.findByName";
-    public final static String FIND_BY_ID = "Transaction.findById";
-    public final static String FIND_BY_TYPE = "Transaction.findByType";
+    public final static String FIND_BY_CONDITION = "Transaction.findByCondition";
     private int transactionNo;
     private String name;
     private HolidayPublic customer;
@@ -41,20 +39,17 @@ public class HolidayTransaction implements Serializable{
     private TransactionType type;
     private Product product;
 
-    public HolidayTransaction(int transactionNo, String name, HolidayPublic customer, String description, TransactionStatus status, TransactionType type, Product product) {
+    public HolidayTransaction() {
+    }
+
+    public HolidayTransaction(int transactionNo, String name, HolidayPublic customer, String description, TransactionType type, Product product) {
         this.transactionNo = transactionNo;
         this.name = name;
         this.customer = customer;
         this.description = description;
-        this.status = status;
+        this.status = TransactionStatus.Created;
         this.type = type;
         this.product = product;
-    }
-
-    
-
-
-    public HolidayTransaction() {
     }
 
     
@@ -79,8 +74,8 @@ public class HolidayTransaction implements Serializable{
 
 
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "public_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "public_id", nullable= false)
     public HolidayPublic getCustomer() {
         return customer;
     }
@@ -96,7 +91,7 @@ public class HolidayTransaction implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
-    @Basic(optional = false)
+    
     @Enumerated(EnumType.STRING)
     public TransactionStatus getStatus() {
         return status;
@@ -106,7 +101,7 @@ public class HolidayTransaction implements Serializable{
         this.status = status;
     }
 
-    @Basic(optional = false)
+    
     @Enumerated(EnumType.STRING)
     public TransactionType getType() {
         return type;
@@ -115,8 +110,8 @@ public class HolidayTransaction implements Serializable{
     public void setType(TransactionType type) {
         this.type = type;
     }
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "product_id", nullable= false)
     public Product getProduct() {
         return product;
     }

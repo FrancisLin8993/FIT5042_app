@@ -18,10 +18,10 @@ import javax.ejb.Remote;
 @Remote
 public interface TransactionManagement {
     
-    public HolidayTransaction findTransactionById(int id);
+    HolidayTransaction findTransactionById(int id) throws Exception;
     
-    public List<HolidayTransaction> findTransactionByName(String name);
+    List<HolidayTransaction> findTransactions( int transactionNo, String name, TransactionType type) throws Exception;
     
-    public List<HolidayTransaction> findTransactionByType(TransactionType type);
+    List<HolidayTransaction> findAllTransaction() throws Exception;
     
 }

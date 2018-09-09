@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Search Transaction</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="/css/site.css"></h:outputStylesheet>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT" crossorigin="anonymous"></link>               
+        <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+            <!--<h:outputScript name="js/bootstrap.js" />-->
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/layout.xhtml">
+            <ui:define name="content">
+                    <div class="container">
+                        <div class="jumbotron">
+                        <h1>Search Transactions</h1>
+                        <h:form id="searchform">
+                            <!--Search Transaction No. -->
+                            <div class="form-group">
+                                <label for="searchtno">
+                                    Transaction No.:
+                                    <h:message for="searchtno"  class="error">
+                                    </h:message>
+                                </label>
+                                    <h:inputText id="searchtno" class="form-control" label="searchtno" required="true" requiredMessage="You must enter a transaction Number!"
+                                                 size="32" value="#{searchTransactionBean.tno}">
+                                        <f:convertNumber integerOnly="true"  />                      
+                                    </h:inputText>
+
+                            </div>
+                            <!--Search Transaction Name -->
+                            <div class="form-group">
+                                <label for="searchtname">
+                                    Transaction Name:
+                                    <h:message for="searchtname" class="error">
+                                    </h:message>
+                                </label>
+                                    <h:inputText id="searchtname" class="form-control" label="searchtname" required="true" requiredMessage="You must enter a transaction Name!"
+                                                 size="32" value="#{searchTransactionBean.tname}">
+                                    </h:inputText>
+
+                            </div>
+                            <!--Search Transaction Type -->
+                            <div class="form-group">
+                                <label for="searchtype">
+                                    Transaction Type:
+                                    <h:message for="searchttype" style="error">
+                                    </h:message>
+                                </label>
+                                <h:selectOneMenu class="form-control" value="#{searchTransactionBean.type}">
+                                    <f:selectItems value="#{searchTransactionBean.types}" />                                          
+                                </h:selectOneMenu>
+
+                            </div>
+                            <!--Search Button -->
+                            
+                                <h:commandLink action="#{searchTransactionBean.searchTransaction()}" id="searchtbutton" value="Search" class="btn btn-primary">
+                                </h:commandLink>
+                           
+                        </h:form>
+                            
+                            <hr /> 
+
+                            <p><h:link value="Return to HomePage" outcome="faces/index" class="btn btn-primary"/></p>
+                        
+                        </div>
+                    </div>
+                </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

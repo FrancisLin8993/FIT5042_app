@@ -6,8 +6,12 @@
 package fit5042.holidayapp.entities;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +24,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 public class HolidayUser implements Serializable{
     private UserType type;
     private int userId;
@@ -32,8 +37,9 @@ public class HolidayUser implements Serializable{
     
     public HolidayUser() {
     }
-    
-    public HolidayUser(int userId, String lastName, String firstName, String email, String password, Address address, String phoneNo) {
+
+    public HolidayUser(UserType type, int userId, String lastName, String firstName, String email, String password, Address address, String phoneNo) {
+        this.type = type;
         this.userId = userId;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -42,6 +48,8 @@ public class HolidayUser implements Serializable{
         this.address = address;
         this.phoneNo = phoneNo;
     }
+    
+    
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -100,6 +108,17 @@ public class HolidayUser implements Serializable{
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
+    
+    @Enumerated(EnumType.STRING)
+    public UserType getType() {
+        return type;
+    }
+
+    public void setType(UserType type) {
+        this.type = type;
+    }
+    
+    
 
     @Override
     public String toString() {

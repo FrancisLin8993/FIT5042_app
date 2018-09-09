@@ -9,6 +9,7 @@ import fit5042.holidayapp.entities.HolidayTransaction;
 import fit5042.holidayapp.entities.TransactionType;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,24 +17,30 @@ import javax.persistence.PersistenceContext;
  *
  * @author fengcilin
  */
+@Stateless
 public class TransactionManagementBean implements TransactionManagement{
-    @PersistenceContext
+    @PersistenceContext (unitName = "HolidayApp-ejbPU")
     private EntityManager em;
 
     @Override
-    public HolidayTransaction findTransactionById(int id) {
+    public HolidayTransaction findTransactionById(int id) throws Exception{
         return em.find(HolidayTransaction.class, id);
     }
 
+    
+
     @Override
-    public List<HolidayTransaction> findTransactionByName(String name) {
-        List<HolidayTransaction> transactions = em.createNamedQuery(HolidayTransaction.FIND_BY_NAME).setParameter("name", name).getResultList();
+    public List<HolidayTransaction> findAllTransaction() throws Exception{
+        return em.createNamedQuery(HolidayTransaction.FIND_ALL).getResultList();
         
-        return transactions;
     }
 
     @Override
-    public List<HolidayTransaction> findTransactionByType(TransactionType type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<HolidayTransaction> findTransactions(int transactionNo, String name, TransactionType type) throws Exception {
+        return em.createNamedQuery(HolidayTransaction.FIND_BY_CONDITION)
+                .setParameter("id", transactionNo)
+                .setParameter("name", name)
+                .setParameter("type", type)
+                .getResultList();
     }
 }

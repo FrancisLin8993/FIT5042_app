@@ -6,15 +6,17 @@
 package fit5042.holidayapp.management;
 
 import fit5042.holidayapp.entities.HolidayUser;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author fengcilin
  */
+@Stateless
 public class UserManagementBean implements UserManagement{
 
     @Override
-    public HolidayUser findUserById(int id) {
+    public HolidayUser findUserById(int id) throws Exception{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

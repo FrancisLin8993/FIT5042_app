@@ -14,7 +14,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface UserManagement {
-    public HolidayUser findUserById(int id);
+    HolidayUser findUserById(int id) throws Exception;
     
     
 }
