@@ -12,9 +12,9 @@ and open the template in the editor.
     <h:head>
         <title>Search Transaction</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="/css/site.css"></h:outputStylesheet>
+        <h:outputStylesheet name="/resources/site.css" ></h:outputStylesheet>
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT" crossorigin="anonymous"></link>               
-        <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
             <!--<h:outputScript name="js/bootstrap.js" />-->
@@ -33,7 +33,7 @@ and open the template in the editor.
                                     <h:message for="searchtno"  class="error">
                                     </h:message>
                                 </label>
-                                    <h:inputText id="searchtno" class="form-control" label="searchtno" required="true" requiredMessage="You must enter a transaction Number!"
+                                <h:inputText id="searchtno" class="form-control" label="searchtno" required="false" converterMessage="Please enter a number"
                                                  size="32" value="#{searchTransactionBean.tno}">
                                         <f:convertNumber integerOnly="true"  />                      
                                     </h:inputText>
@@ -43,10 +43,10 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="searchtname">
                                     Transaction Name:
-                                    <h:message for="searchtname" class="error">
-                                    </h:message>
+                                    <!--<h:message for="searchtname" class="error">
+                                    </h:message>-->
                                 </label>
-                                    <h:inputText id="searchtname" class="form-control" label="searchtname" required="true" requiredMessage="You must enter a transaction Name!"
+                                    <h:inputText id="searchtname" class="form-control" label="searchtname" required="false"
                                                  size="32" value="#{searchTransactionBean.tname}">
                                     </h:inputText>
 
@@ -59,6 +59,7 @@ and open the template in the editor.
                                     </h:message>
                                 </label>
                                 <h:selectOneMenu class="form-control" value="#{searchTransactionBean.type}">
+                                    <f:selectItem itemLabel="Please Select a Transaction Type" />
                                     <f:selectItems value="#{searchTransactionBean.types}" />                                          
                                 </h:selectOneMenu>
 
