@@ -30,7 +30,7 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="searchtno">
                                     Transaction No.:
-                                    <h:message for="searchtno"  class="error">
+                                    <h:message for="searchtno"  style="color:red;">
                                     </h:message>
                                 </label>
                                 <h:inputText id="searchtno" class="form-control" label="searchtno" required="false" converterMessage="Please enter a number"
@@ -55,7 +55,7 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="searchtype">
                                     Transaction Type:
-                                    <h:message for="searchttype" style="error">
+                                    <h:message for="searchttype" style="color:red;">
                                     </h:message>
                                 </label>
                                 <h:selectOneMenu class="form-control" value="#{searchTransactionBean.type}">

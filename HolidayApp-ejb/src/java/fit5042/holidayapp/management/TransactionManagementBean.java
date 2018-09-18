@@ -12,6 +12,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -43,4 +46,17 @@ public class TransactionManagementBean implements TransactionManagement{
                 .setParameter("type", type)
                 .getResultList();
     }
+
+    @Override
+    public List<HolidayTransaction> findTransacionOfPublic(int publicId) throws Exception {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery(HolidayTransaction.class);
+        Root r = cq.from(HolidayTransaction.class);
+        cq.where(cb.equal(r.get("customer").get("userId"), publicId));
+        cq.select(r);
+        return em.createQuery(cq).getResultList();
+        
+    }
+    
+    
 }

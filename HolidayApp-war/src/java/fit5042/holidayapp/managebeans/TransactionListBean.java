@@ -13,8 +13,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+//import javax.faces.bean.RequestScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ViewScoped;
+//import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -48,6 +49,8 @@ public class TransactionListBean implements Serializable{
     public void setTm(TransactionManagement tm) {
         this.tm = tm;
     }
+    
+    
     
     
 }

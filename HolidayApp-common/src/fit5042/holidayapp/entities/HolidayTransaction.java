@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -36,7 +37,7 @@ public class HolidayTransaction implements Serializable{
     private HolidayPublic customer;
     private String description;
     private TransactionStatus status;
-    private TransactionType type;
+    private TransactionType ttype;
     private Product product;
 
     public HolidayTransaction() {
@@ -48,7 +49,7 @@ public class HolidayTransaction implements Serializable{
         this.customer = customer;
         this.description = description;
         this.status = TransactionStatus.Created;
-        this.type = type;
+        this.ttype = type;
         this.product = product;
     }
 
@@ -103,12 +104,13 @@ public class HolidayTransaction implements Serializable{
 
     
     @Enumerated(EnumType.STRING)
+    @Column(name="TRANSACTIONTYPE")
     public TransactionType getType() {
-        return type;
+        return ttype;
     }
 
     public void setType(TransactionType type) {
-        this.type = type;
+        this.ttype = type;
     }
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "product_id", nullable= false)

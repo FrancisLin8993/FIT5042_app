@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+//import javax.faces.bean.SessionScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
