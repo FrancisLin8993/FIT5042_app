@@ -40,6 +40,13 @@ and open the template in the editor.
                                             <f:param name="tno" value="#{t.transactionNo}" />
                                         </h:link>
                                 </h:column>
+                                    
+                                <h:column>
+                                        
+                                        <h:link value="Change Status" outcome="changetranstatus?faces-redirect=true.xhtml">
+                                            <f:param name="tno" value="#{t.transactionNo}" />
+                                        </h:link>
+                                </h:column>
 
 
                                 </h:dataTable>

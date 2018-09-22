@@ -88,19 +88,20 @@ and open the template in the editor.
                             </div>
                             
                             <!--User Type -->
+                            <!--
                             <div class="form-group">
                                 <h:outputLabel for="usertype">
                                     User Type:
                                     <h:message for="usertype" style="color:red;">
                                     </h:message>
                                 </h:outputLabel>
-                                <h:selectOneMenu class="form-control" value="#{userBean.type}" requiredMessage="Please choose a user type">
+                                <h:selectOneMenu class="form-control" value="{userBean.type}" requiredMessage="Please choose a user type">
                                     <f:selectItem itemLabel="Please Select a User Type" />
-                                    <f:selectItems value="#{userBean.types}" />                                          
+                                    <f:selectItems value="{userBean.types}" />                                          
                                 </h:selectOneMenu>
 
                             </div>
-                            
+                            -->
                             <!--User Phone Number -->
                             <div class="form-group">
                                 <h:outputLabel for="phoneno">

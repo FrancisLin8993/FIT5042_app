@@ -5,15 +5,24 @@
  */
 package fit5042.holidayapp.managebeans;
 
+import fit5042.holidayapp.entities.HolidayPublic;
 import fit5042.holidayapp.entities.HolidayTransaction;
+import fit5042.holidayapp.entities.HolidayUser;
+import fit5042.holidayapp.entities.Product;
+import fit5042.holidayapp.entities.TransactionStatus;
+import fit5042.holidayapp.entities.TransactionType;
+import fit5042.holidayapp.management.ProductManagement;
 import fit5042.holidayapp.management.TransactionManagement;
+import fit5042.holidayapp.management.UserManagement;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 //import javax.faces.bean.RequestScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -27,10 +36,28 @@ public class TransactionBean implements Serializable{
     
     @EJB
     private TransactionManagement tm;
+    
     private HolidayTransaction transaction;
     private int tno;
     
+    private TransactionStatus status;
     
+    
+    
+
+    public TransactionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TransactionStatus status) {
+        this.status = status;
+    }
+    
+    public TransactionStatus[] getStatuses(){
+        return TransactionStatus.values();
+    }
+    
+   
 
     public TransactionBean()  {
         
@@ -39,11 +66,14 @@ public class TransactionBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        try{
-            tno = Integer.valueOf(FacesContext.getCurrentInstance() 
+        
+        tno = Integer.valueOf(FacesContext.getCurrentInstance() 
                          .getExternalContext()
                          .getRequestParameterMap()
                          .get("tno"));
+        
+        
+        try{
             transaction = getTransactionById(tno);
         }
         catch(Exception ex){
@@ -75,10 +105,21 @@ public class TransactionBean implements Serializable{
     public void setTno(int tno) {
         this.tno = tno;
     }
-    
-    
-    
+        
     public HolidayTransaction getTransactionById(int id) throws Exception{
         return tm.findTransactionById(id);
     }
+    
+    public String updateStatus(){
+        this.transaction.setStatus(status);
+        try {
+            tm.updateTransaction(transaction);
+            return "/transactionlist?faces-redirect=true.xhtml";
+        } catch (Exception ex) {
+            Logger.getLogger(TransactionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
 }

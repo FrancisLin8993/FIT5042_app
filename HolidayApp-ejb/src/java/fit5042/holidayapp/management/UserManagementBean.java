@@ -68,5 +68,14 @@ public class UserManagementBean implements UserManagement{
         }
     }
 
+    @Override
+    public void updateUser(HolidayUser user) throws Exception {
+        /*user = findUserById(user.getUserId());
+        if (user == null) {
+            throw new Exception("User does not exist");
+        }*/
+        em.merge(user);
+    }
+
     
 }

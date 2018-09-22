@@ -48,16 +48,27 @@ and open the template in the editor.
                                 </h:column>
                                     
                                 <h:column>
+                                    <h:commandLink value="Edit" action="#{userBean.redirectEditUserPage(u)}">
+                                            <f:param name="uid" value="#{u.userId}" />
+                                    </h:commandLink>
+                                    <!--<h:link value="Edit" outcome="edituser.xhtml">
+                                        <f:param name="user" value="{u.userId}" />
+                                    </h:link>-->
+                                </h:column>
+                                    
+                                <h:column>
                                         
                                     <h:commandLink value="Remove" action="#{userBean.removeUser(u)}">
                                             <f:param name="uid" value="#{u.userId}" />
-                                        </h:commandLink>
+                                    </h:commandLink>
                                 </h:column>
 
 
                                 </h:dataTable>
                                 
-                                <h:commandLink action="#{userBean.redirectAddUserPage()}" id="addusersubmit" value="Add A User" class="btn btn-primary"/>
+                                <h:commandLink action="#{userBean.redirectAddPublicPage()}" id="addpublicsubmit" value="Add A Public" class="btn btn-primary"/>
+                                <h:commandLink action="#{userBean.redirectAddWorkerPage()}" id="addworkersubmit" value="Add A Worker" class="btn btn-primary"/>
+
 
                             </h:form>
                         </div>

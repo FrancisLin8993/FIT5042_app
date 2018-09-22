@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 //import javax.faces.bean.SessionScoped;
 
@@ -35,6 +36,7 @@ public class UserBean implements Serializable {
     private UserManagement um;
     @EJB
     private TransactionManagement tm;
+    private HolidayUser editUser;
     private HolidayUser user; 
     private HolidayPublic customer;
     private HolidayWorker worker;
@@ -42,6 +44,16 @@ public class UserBean implements Serializable {
     private UserType type;
     private Address address;
     private String message;
+
+    public HolidayUser getEditUser() {
+        return editUser;
+    }
+
+    public void setEditUser(HolidayUser editUser) {
+        this.editUser = editUser;
+    }
+    
+    
 
     public HolidayPublic getCustomer() {
         return customer;
@@ -143,15 +155,20 @@ public class UserBean implements Serializable {
     
     public String addUser() {
         try {
-            if ()
+            if (this.customer != null)
             {
-                
+                customer.setAddress(address);
+                customer.setType(UserType.Public);
+                um.addUser(customer);
+                setCustomer(null);
             }
-                   
-            user.setAddress(address);
-            user.setType(type);
-            
-            um.addUser(user);                        
+            else if (this.worker != null)
+            {
+                worker.setAddress(address);
+                worker.setType(UserType.Worker);
+                um.addUser(worker);
+                setWorker(null);
+            }                  
             findUsers();
             message = "User has been added.";
         } catch (Exception ex) {
@@ -165,11 +182,16 @@ public class UserBean implements Serializable {
         return "/user?faces-redirect=true.xhtml";
     }
     
-    public String redirectAddUserPage(){
+    public String redirectAddPublicPage(){
         this.customer = new HolidayPublic();
+        this.address = new Address();
+        return "/addpublic?faces-redirect=true.xhtml";
+    }
+    
+    public String redirectAddWorkerPage(){        
         this.worker = new HolidayWorker();
         this.address = new Address();
-        return "/adduser?faces-redirect=true.xhtml";
+        return "/addworker?faces-redirect=true.xhtml";
     }
     
     public boolean isPublicHasTransactions(){
@@ -209,10 +231,31 @@ public class UserBean implements Serializable {
     
     
     
+    public String redirectEditUserPage(HolidayUser user){
+        
+        this.editUser = user;
+        
+        return "/edituser?faces-redirect=true.xhtml";
+    }
+    
+    public String updateUser() {    
+        
+        try {
+            um.updateUser(editUser);
+            message = "User details has updated.";
+            return "/userlist?faces-redirect=true.xhtml";
+        } catch (Exception ex) {
+            Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
+            message = "User details has failed to update.";            
+            return "";
+        }
+    }
+    
     
     @PostConstruct
     public void init(){
         findUsers();
+        setMessage("");
         
         
     }

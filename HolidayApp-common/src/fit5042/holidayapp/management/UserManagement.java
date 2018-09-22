@@ -25,5 +25,5 @@ public interface UserManagement {
     
     void removeUser(int id) throws Exception;
     
-       
+    void updateUser(HolidayUser user) throws Exception;
 }

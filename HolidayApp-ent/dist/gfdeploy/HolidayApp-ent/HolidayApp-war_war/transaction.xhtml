@@ -23,7 +23,7 @@ and open the template in the editor.
                         <ul>
                             <li>Transaction No.:    #{transactionBean.transaction.transactionNo}</li>
                             <li>Transaction Name:   #{transactionBean.transaction.name}</li>
-                            <li>Customer:   #{transactionBean.transaction.customer.firstName}</li>
+                            <li>Customer:   #{transactionBean.transaction.customer.firstName}  #{transactionBean.transaction.customer.lastName}</li>
                             <li>Product:   #{transactionBean.transaction.product.productName}</li>
                             <li>Transaction Description:   #{transactionBean.transaction.description}</li>
                             <li>Transaction Status:   #{transactionBean.transaction.status}</li>

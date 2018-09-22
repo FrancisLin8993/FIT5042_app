@@ -75,7 +75,8 @@ public class HolidayTransaction implements Serializable{
 
 
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "public_id", nullable= false)
     public HolidayPublic getCustomer() {
         return customer;
@@ -112,7 +113,8 @@ public class HolidayTransaction implements Serializable{
     public void setType(TransactionType type) {
         this.ttype = type;
     }
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "product_id", nullable= false)
     public Product getProduct() {
         return product;

@@ -6,8 +6,10 @@
 package fit5042.holidayapp.management;
 
 import fit5042.holidayapp.entities.HolidayTransaction;
+import fit5042.holidayapp.entities.TransactionStatus;
 import fit5042.holidayapp.entities.TransactionType;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,11 +53,22 @@ public class TransactionManagementBean implements TransactionManagement{
     public List<HolidayTransaction> findTransacionOfPublic(int publicId) throws Exception {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery(HolidayTransaction.class);
-        Root r = cq.from(HolidayTransaction.class);
+        Root<HolidayTransaction> r = cq.from(HolidayTransaction.class);
         cq.where(cb.equal(r.get("customer").get("userId"), publicId));
         cq.select(r);
         return em.createQuery(cq).getResultList();
         
+    }
+
+    @Override
+    public void updateTransaction(HolidayTransaction transaction) throws Exception {
+        em.merge(transaction);
+    }
+
+    @Override
+    public void addTransaction(HolidayTransaction transaction) throws Exception {
+        
+        em.persist(transaction);
     }
     
     
