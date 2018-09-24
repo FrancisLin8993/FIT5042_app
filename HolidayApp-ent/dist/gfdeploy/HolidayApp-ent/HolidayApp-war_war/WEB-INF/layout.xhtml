@@ -47,9 +47,17 @@
                         </ul>
                         
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="login.xhtml">Log In</a></li>
+                            <ui:fragment rendered="#{not empty facesContext.externalContext.remoteUser}">
+                                <li>Welcome!</li>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{empty facesContext.externalContext.remoteUser}">
+                                <li><a href="login.xhtml">Log In</a></li>
+                            </ui:fragment>
                         </ul>
                         
+                        
+                        
+                       
                     </div>
                 </div>
             </div>

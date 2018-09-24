@@ -20,7 +20,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import static org.apache.commons.codec.digest.Crypt.crypt;
+import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
 
 /**
  *
@@ -54,7 +54,7 @@ public class HolidayUser implements Serializable{
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
-        this.password = crypt(password);
+        this.password = sha256Hex(password);
         this.address = address;
         this.phoneNo = phoneNo;
     }
@@ -100,7 +100,7 @@ public class HolidayUser implements Serializable{
     }
     
     public void setPassword(String password) {
-        this.password = crypt(password);
+        this.password = sha256Hex(password);
     }
     @Embedded
     public Address getAddress() {
