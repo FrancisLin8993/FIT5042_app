@@ -20,6 +20,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
 
 /**
@@ -71,6 +73,8 @@ public class HolidayUser implements Serializable{
         this.userId = userId;
     }
 
+    @NotNull(message = "Please enter your last name.")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Sorry, names cannot contain numberic characters.")
     public String getLastName() {
         return lastName;
     }
@@ -79,6 +83,8 @@ public class HolidayUser implements Serializable{
         this.lastName = lastName;
     }
 
+    @NotNull(message = "Please enter your first name.")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Sorry, names cannot contain numberic characters.")
     public String getFirstName() {
         return firstName;
     }
@@ -87,6 +93,9 @@ public class HolidayUser implements Serializable{
         this.firstName = firstName;
     }
 
+    @NotNull(message = "Please enter your email")
+    @Pattern(regexp = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+            message = "Sorry, your input email does not conform to the correct format.")
     public String getEmail() {
         return email;
     }
@@ -111,6 +120,9 @@ public class HolidayUser implements Serializable{
         this.address = address;
     }
 
+    @NotNull(message = "Please enter your phone number.")
+    @Pattern(regexp = "^9\\d{7}|0\\d{9}$", 
+           message = "Your phone number have to be 8 digits long if starting with 9, or be 10 digits long if starting with 0.")
     public String getPhoneNo() {
         return phoneNo;
     }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lin's Holiday Booking - Personal Information</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:debug />
+        <ui:composition template="/WEB-INF/layout.xhtml">
+            <ui:define name="content">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h3>Personal Information</h3>
+                        <ul>
+                            <li>Email:    #{personalInfoBean.user.email}</li>
+                            <li>User Name:   #{personalInfoBean.user.firstName} #{personalInfoBean.user.lastName}</li>
+                            <li>Phone Number:   #{personalInfoBean.user.phoneNo}</li>
+                            <li>User Type:   #{personalInfoBean.user.type}</li>
+                            <li>Address:   #{personalInfoBean.user.address}</li>                         
+                        </ul>
+                        <!-- Link back to the List page -->
+                        <p>
+                            <h:link value="Back to Home" outcome="index" class="btn btn-default"/> 
+                        </p>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

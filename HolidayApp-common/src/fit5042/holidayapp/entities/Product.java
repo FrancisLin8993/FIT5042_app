@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -61,7 +62,7 @@ public class Product implements Serializable{
         this.Id = Id;
     }
 
-    
+    @NotNull(message = "Please enter a product name")
     public String getProductName() {
         return productName;
     }
@@ -94,7 +95,7 @@ public class Product implements Serializable{
         this.airlineName = airlineName;
     }
 
-    
+    @NotNull(message = "please enter a start date")
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getStartDate() {
         return startDate;
@@ -104,7 +105,7 @@ public class Product implements Serializable{
         this.startDate = startDate;
     }
 
-    
+    @NotNull(message = "please enter a end date")
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getEndDate() {
         return endDate;
@@ -114,6 +115,7 @@ public class Product implements Serializable{
         this.endDate = endDate;
     }
 
+    @NotNull(message = "please enter a price")
     public double getPrice() {
         return price;
     }

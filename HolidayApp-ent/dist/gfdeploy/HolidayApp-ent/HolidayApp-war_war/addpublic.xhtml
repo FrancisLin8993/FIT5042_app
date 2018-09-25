@@ -42,24 +42,28 @@ and open the template in the editor.
                             <div class="form-group">
                                 <h:outputLabel for="passw">
                                     Password:
-                                    <h:message for="passw"  style="color:red;">
+                                    <h:message for="passw" id="mpassw" style="color:red;">
                                     </h:message>
                                 </h:outputLabel>
                                 <h:inputSecret id="passw" class="form-control" label="passw" required="true" requiredMessage="Please enter a valid password"
-                                             size="32" value="#{userBean.customer.password}">                                                             
+                                             size="32" value="#{userBean.customer.password}">   
+                                    <f:validator validatorId="confirmPasswordValidator" />
+                                    <f:attribute name="confirmPassword" value="#{confirmPassword.submittedValue}" />
+                                    <f:ajax event="blur" execute="passw confirmPassword" render="mpassw" />
                                 </h:inputSecret>
 
                             </div>
                             
                             <!--Confirm Password -->
                             <div class="form-group">
-                                <h:outputLabel for="confirmpassw">
+                                <h:outputLabel for="confirmPassword">
                                     Confirm Password:
-                                    <h:message for="confirmpassw" id="confirmmsg" style="color:red;">
+                                    <h:message for="confirmPassword" id="confirmmsg" style="color:red;">
                                     </h:message>
                                 </h:outputLabel>
-                                <h:inputSecret id="confirmpassw" class="form-control" label="confirmpassw" required="true" requiredMessage="Your input is not matched"
-                                               size="32"  >                                                             
+                                <h:inputSecret id="confirmPassword" class="form-control" label="confirmPassword" required="true" requiredMessage="Please enter your password again."
+                                               binding="#{confirmPassword}" size="32"  >   
+                                    <f:ajax event="blur" execute="passw confirmPassword" render="mpassw confirmmsg" />
                                 </h:inputSecret>                    
                             </div>
                             <!--User First Name -->
@@ -110,8 +114,8 @@ and open the template in the editor.
                                     </h:message>
                                 </h:outputLabel>
                                 <h:inputText id="phoneno" class="form-control" label="phoneno" required="true" requiredMessage="Please enter a phone number"
-                                             size="32" value="#{userBean.customer.phoneNo}" converterMessage="Please Enter Numbers Only">
-                                    <f:convertNumber integerOnly="true"  />
+                                             size="32" value="#{userBean.customer.phoneNo}" >
+                                     <f:validateRegex pattern="^9\d{7}$|0\d{9}$" />
                                 </h:inputText>
 
                             </div>
