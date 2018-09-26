@@ -133,11 +133,11 @@ public class HolidayUser implements Serializable{
     
     @Enumerated(EnumType.STRING)
     @Column(name="USERTYPE")
-    public UserType getType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setType(UserType type) {
+    public void setUserType(UserType type) {
         this.userType = type;
     }
     

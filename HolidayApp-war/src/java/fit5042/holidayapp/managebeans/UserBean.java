@@ -21,6 +21,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 //import javax.faces.bean.SessionScoped;
 
 
@@ -44,6 +45,15 @@ public class UserBean implements Serializable {
     private UserType type;
     private Address address;
     private String message;
+    private int uid;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
 
     public HolidayUser getEditUser() {
         return editUser;
@@ -158,14 +168,14 @@ public class UserBean implements Serializable {
             if (this.customer != null)
             {
                 customer.setAddress(address);
-                customer.setType(UserType.Public);
+                customer.setUserType(UserType.Public);
                 um.addUser(customer);
                 setCustomer(null);
             }
             else if (this.worker != null)
             {
                 worker.setAddress(address);
-                worker.setType(UserType.Worker);
+                worker.setUserType(UserType.Worker);
                 um.addUser(worker);
                 setWorker(null);
             }                  
@@ -209,7 +219,7 @@ public class UserBean implements Serializable {
         this.user = user;
         try 
         {
-            if (user.getType().equals(UserType.valueOf("Public")) && (isPublicHasTransactions() == true))
+            if (user.getUserType().equals(UserType.valueOf("Public")) && (isPublicHasTransactions() == true))
             {
                 message = "Sorry, A user with transaction records cannot be removed.";
             }
@@ -257,6 +267,18 @@ public class UserBean implements Serializable {
         findUsers();
         setMessage("");
         
+        uid = Integer.valueOf(FacesContext.getCurrentInstance() 
+                         .getExternalContext()
+                         .getRequestParameterMap()
+                         .get("uid"));
+        if (uid != 0)
+        {
+            try {
+                this.user = um.findUserById(uid);
+            } catch (Exception ex) {
+                Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
     }
     

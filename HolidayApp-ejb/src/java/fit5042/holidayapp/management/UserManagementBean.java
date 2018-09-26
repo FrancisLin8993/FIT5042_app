@@ -6,10 +6,14 @@
 package fit5042.holidayapp.management;
 
 import fit5042.holidayapp.entities.HolidayUser;
+import fit5042.holidayapp.entities.UserType;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -75,6 +79,20 @@ public class UserManagementBean implements UserManagement{
             throw new Exception("User does not exist");
         }*/
         em.merge(user);
+    }
+
+    @Override
+    public List<HolidayUser> findUserByCombinationCriteria(int userId, String firstName, String lastName, UserType userType, String email) throws Exception {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery(HolidayUser.class);
+        Root<HolidayUser> user = cq.from(HolidayUser.class);
+        cq.select(user);
+        cq.where(cb.equal(user.get("userId").as(Integer.class), userId),
+                cb.and(cb.like(user.get("firstName").as(String.class), firstName)),
+                cb.and(cb.like(user.get("lastName").as(String.class), lastName)),
+                cb.and(cb.like(user.get("email").as(String.class), email)),
+                cb.and(cb.equal(user.get("userType"), userType)));
+        return em.createQuery(cq).getResultList();
     }
 
     

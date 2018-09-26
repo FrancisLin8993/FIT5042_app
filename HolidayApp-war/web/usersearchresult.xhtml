@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lin's Holiday Booking - User List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/layout.xhtml">
+            <ui:define name="content">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>User Search Result</h1>
+                        <div>
+                            <h:form>
+                                <h:dataTable value="#{searchUserBean.users}" var="u" class="table">
+                                <h:column>
+                                        <!-- column header -->
+                                        <f:facet name="header">User ID</f:facet>
+                                        <!-- row record -->
+                                        #{u.userId}
+                                </h:column>
+
+                                <h:column>
+                                        <f:facet name="header">Last Name</f:facet>
+                                        #{u.lastName}
+                                </h:column>
+                                    
+                                <h:column>
+                                        <f:facet name="header">First Name</f:facet>
+                                        #{u.firstName}
+                                </h:column>
+                                    
+                                <h:column>
+                                        <f:facet name="header">Email</f:facet>
+                                        #{u.email}
+                                </h:column>
+
+                                <h:column>
+                                        <f:facet name="header">User Details</f:facet>
+                                        <h:link value="Details" outcome="user.xhtml">
+                                            <f:param name="uid" value="#{u.userId}" />
+                                        </h:link>
+                                </h:column>
+
+
+                                </h:dataTable>
+                            </h:form>
+                            <h:link value="Back to User Search" outcome="searchuser" class="btn btn-default"/>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

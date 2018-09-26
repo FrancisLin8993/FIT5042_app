@@ -6,6 +6,7 @@
 package fit5042.holidayapp.management;
 
 import fit5042.holidayapp.entities.HolidayUser;
+import fit5042.holidayapp.entities.UserType;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -26,4 +27,6 @@ public interface UserManagement {
     void removeUser(int id) throws Exception;
     
     void updateUser(HolidayUser user) throws Exception;
+    
+    List<HolidayUser> findUserByCombinationCriteria(int userId, String firstName, String lastName, UserType userType, String email) throws Exception;
 }
