@@ -21,7 +21,7 @@ and open the template in the editor.
                         <h1>User Search Result</h1>
                         <div>
                             <h:form>
-                                <h:dataTable value="#{searchUserBean.users}" var="u" class="table">
+                                <h:dataTable value="#{searchUserBean.userlist}" var="u" class="table">
                                 <h:column>
                                         <!-- column header -->
                                         <f:facet name="header">User ID</f:facet>
@@ -46,9 +46,9 @@ and open the template in the editor.
 
                                 <h:column>
                                         <f:facet name="header">User Details</f:facet>
-                                        <h:link value="Details" outcome="user.xhtml">
+                                        <h:commandLink value="Details" action="#{userBean.displayUserDetail(u)}">
                                             <f:param name="uid" value="#{u.userId}" />
-                                        </h:link>
+                                        </h:commandLink>
                                 </h:column>
 
 

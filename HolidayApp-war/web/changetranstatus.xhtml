@@ -42,7 +42,9 @@ and open the template in the editor.
                                                
                             <!--Submit Button -->
                             
-                            <h:commandLink action="#{transactionBean.updateStatus()}" id="statussubmit" value="Submit" class="btn btn-primary" />
+                            <h:commandLink action="#{transactionBean.updateStatus()}" id="statussubmit" value="Submit" class="btn btn-primary" >
+                                <f:param name="tno" value="#{transactionBean.transaction.transactionNo}" />
+                            </h:commandLink>
                                 
                            
                         </h:form>

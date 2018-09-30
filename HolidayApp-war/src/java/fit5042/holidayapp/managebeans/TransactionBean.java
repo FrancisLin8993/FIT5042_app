@@ -121,5 +121,16 @@ public class TransactionBean implements Serializable{
         return null;
     }
     
+    public String cancelTransaction(){
+        this.transaction.setStatus(TransactionStatus.Cancelled);
+        try {
+            tm.updateTransaction(transaction);
+            return "/transactionlist?faces-redirect=true.xhtml";
+        } catch (Exception ex) {
+            Logger.getLogger(TransactionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     
 }

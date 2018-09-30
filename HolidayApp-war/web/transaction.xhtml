@@ -19,6 +19,7 @@ and open the template in the editor.
             <ui:define name="content">
                 <div class="container">
                     <div class="jumbotron">
+                        <h:form>
                         <h3>Transaction Details</h3>
                         <ul>
                             <li>Transaction No.:    #{transactionBean.transaction.transactionNo}</li>
@@ -29,6 +30,26 @@ and open the template in the editor.
                             <li>Transaction Status:   #{transactionBean.transaction.status}</li>
                             <li>Transaction Type:   #{transactionBean.transaction.type}</li>
                         </ul>
+                        
+                        <p>
+                            <ui:fragment rendered="#{request.isUserInRole('Public') and transactionBean.transaction.status == 'Created'}">
+                                <h:commandLink value="Cancel This Transaction" action="#{transactionBean.cancelTransaction()}" class="btn btn-danger">
+                                    <f:param name="tno" value="#{transactionBean.transaction.transactionNo}" />
+                                </h:commandLink> 
+                            </ui:fragment>
+                            
+                            
+                            <ui:fragment rendered="#{request.isUserInRole('Worker')}">
+                                    
+
+                                <h:link value="Change Status" outcome="changetranstatus?faces-redirect=true.xhtml" class="btn btn-primary">
+                                    <f:param name="tno" value="#{transactionBean.transaction.transactionNo}" />
+                                </h:link>
+                                   
+                            </ui:fragment>
+                        </p>
+                        
+                        </h:form>
                         <!-- Link back to the index page -->
                         <p>
                             <h:link value="Back to Transaction List" outcome="transactionlist" class="btn btn-default"/> 

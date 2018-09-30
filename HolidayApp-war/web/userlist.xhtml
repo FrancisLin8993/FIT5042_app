@@ -19,10 +19,10 @@ and open the template in the editor.
                 <div class="container">
                     <div class="jumbotron">
                         <h1>User List</h1>
-                        <h:outputLabel class="alert alert-warning alert-dismissible" id="msglabel" rendered="#{not empty userBean.message}" value="#{userBean.message}"/>
+                        <h:outputLabel class="alert alert-warning" id="msglabel" rendered="#{not empty userBean.message}" value="#{userBean.message}"/>
                         <div>
                             <h:form>
-                                <h:dataTable value="#{userBean.users}" var="u" class="table">
+                                <h:dataTable value="#{userBean.userlist}" var="u" class="table">
                                 <h:column>
                                         <!-- column header -->
                                         <f:facet name="header">Email</f:facet>
@@ -37,7 +37,7 @@ and open the template in the editor.
                                     
                                 <h:column>
                                     <f:facet name="header">User Type</f:facet>
-                                    #{u.type}
+                                    #{u.userType}
                                 </h:column>
 
                                 <h:column>
@@ -50,10 +50,7 @@ and open the template in the editor.
                                 <h:column>
                                     <h:commandLink value="Edit" action="#{userBean.redirectEditUserPage(u)}">
                                             <f:param name="uid" value="#{u.userId}" />
-                                    </h:commandLink>
-                                    <!--<h:link value="Edit" outcome="edituser.xhtml">
-                                        <f:param name="user" value="{u.userId}" />
-                                    </h:link>-->
+                                    </h:commandLink>                                    
                                 </h:column>
                                     
                                 <h:column>

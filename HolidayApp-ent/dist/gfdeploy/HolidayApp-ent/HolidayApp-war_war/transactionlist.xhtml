@@ -12,44 +12,56 @@ and open the template in the editor.
     <h:head>
         <title>Lin's Holiday Booking - Transaction List</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css"/>
+        
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/layout.xhtml">
             <ui:define name="content">
+                
                 <div class="container">
                     <div class="jumbotron">
                         <h1>Transaction List</h1>
                         <div>
-                            <h:form>
-                                <h:dataTable value="#{transactionListBean.allTransactions}" var="t" class="table">
+                            <h:form id="tform">
+                                <h:dataTable value="#{request.isUserInRole('Worker') ? transactionListBean.allTransactions : transactionListBean.currentUserTransactions}" var="t" class="table" id="datatable">
                                 <h:column>
-                                        <!-- column header -->
+                                        
                                         <f:facet name="header">Transaction No.</f:facet>
+                                        
                                         <!-- row record -->
                                         #{t.transactionNo}
+                                       
                                 </h:column>
 
                                 <h:column>
+                                   
                                         <f:facet name="header">Transaction Name</f:facet>
+                                  
                                         #{t.name}
+                                        
                                 </h:column>
 
                                 <h:column>
+                                    
                                         <f:facet name="header">Transaction Details</f:facet>
+                                   
                                         <h:link value="Details" outcome="transaction.xhtml">
                                             <f:param name="tno" value="#{t.transactionNo}" />
                                         </h:link>
                                 </h:column>
-                                    
-                                <h:column>
-                                        
-                                        <h:link value="Change Status" outcome="changetranstatus?faces-redirect=true.xhtml">
-                                            <f:param name="tno" value="#{t.transactionNo}" />
-                                        </h:link>
-                                </h:column>
+                                
+                                <!--<ui:fragment rendered="{request.isUserInRole('Worker')}">
+                                    <h:column>
 
+                                            <h:link value="Change Status" outcome="changetranstatus?faces-redirect=true.xhtml">
+                                                <f:param name="tno" value="{t.transactionNo}" />
+                                            </h:link>
+                                    </h:column>
+                                </ui:fragment>-->
 
                                 </h:dataTable>
+                                
                             </h:form>
                         </div>
                     </div>

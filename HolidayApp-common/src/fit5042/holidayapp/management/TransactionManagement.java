@@ -20,7 +20,7 @@ public interface TransactionManagement {
     
     HolidayTransaction findTransactionById(int id) throws Exception;
     
-    List<HolidayTransaction> findTransactions(int transactionNo, String name, TransactionType type) throws Exception;
+    List<HolidayTransaction> findTransactions(int transactionNo, String name, TransactionType type, int userId) throws Exception;
     
     List<HolidayTransaction> findAllTransaction() throws Exception;
     

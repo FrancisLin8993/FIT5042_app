@@ -136,7 +136,9 @@ public class AddTransactionBean implements Serializable {
         
         try{
             product = pm.findProductById(pid);
-            user = um.findUserById(1);
+            
+            String email = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+            this.user = um.findUserByEmail(email);
         }
         catch(Exception ex){
             Logger.getLogger(TransactionBean.class.getName()).log(Level.SEVERE, null, ex);

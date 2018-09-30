@@ -22,7 +22,7 @@ and open the template in the editor.
                         <h:outputLabel class="alert alert-warning alert-dismissible" id="msglabel" rendered="{not empty productBean.message}" value="{productBean.message}"/>
                         <div>
                             <h:form>
-                                <h:dataTable value="#{productBean.products}" var="p" class="table">
+                                <h:dataTable value="#{productBean.productList}" var="p" class="table">
                                 <h:column>
                                         <!-- column header -->
                                         <f:facet name="header">Holiday Package Name</f:facet>

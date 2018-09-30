@@ -10,7 +10,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <title>Lin's Holiday Booking</title>
         <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT" crossorigin="anonymous"></link>       
-
+        <script src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+            
+        <h:outputScript name="js/bootstrap.js" />    
+        <!-- This jquery script is from https://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover-->
+        <script type="text/javascript">
+            $(function () {
+                $(function(){
+                    $('.dropdown').hover(function() {
+                        $(this).addClass('open');
+                    },
+                    function() {
+                        $(this).removeClass('open');
+                    });
+                });
+            });
+        </script>
     </h:head>
     <h:body>
         
@@ -29,7 +44,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="index.xhtml">Home</a></li>
                             <li><a href="productlist.xhtml">Holiday Packages</a></li>
-                            <li><a href="#">About</a></li>
+                            
                             <ui:fragment rendered="#{not empty request.remoteUser}">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transaction<span class="caret"></span></a>
@@ -89,9 +104,7 @@
                 <p>&copy; 2018 - Lin's Holiday Booking Platform</p>
             </footer>
         </div>
-            <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
             
-            <h:outputScript name="js/bootstrap.js" />    
 	    
 
         

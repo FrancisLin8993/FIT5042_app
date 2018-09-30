@@ -27,7 +27,7 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({@NamedQuery(name = HolidayTransaction.FIND_ALL, query = "SELECT t FROM HolidayTransaction t"),
-@NamedQuery(name = HolidayTransaction.FIND_BY_CONDITION, query = "SELECT t FROM HolidayTransaction t WHERE t.transactionNo=:id OR t.name LIKE :name OR t.type=:type"),
+@NamedQuery(name = HolidayTransaction.FIND_BY_CONDITION, query = "SELECT t FROM HolidayTransaction t WHERE t.customer.userId=:uid AND (t.transactionNo=:id OR t.name LIKE :name OR t.type=:type)"),
 })
 public class HolidayTransaction implements Serializable{
     public final static String FIND_ALL = "Transaction.findAll";

@@ -25,7 +25,7 @@ import javax.ejb.EJB;
 @SessionScoped
 public class SearchUserBean implements Serializable {
 
-    private List<HolidayUser> users;
+    private List<HolidayUser> userlist;
     @EJB
     private UserManagement um;
     private int userId;
@@ -34,13 +34,15 @@ public class SearchUserBean implements Serializable {
     private String email;
     private UserType type;
 
-    public List<HolidayUser> getUsers() {
-        return users;
+    public List<HolidayUser> getUserlist() {
+        return userlist;
     }
 
-    public void setUsers(List<HolidayUser> users) {
-        this.users = users;
+    public void setUserlist(List<HolidayUser> userlist) {
+        this.userlist = userlist;
     }
+
+    
 
     public UserManagement getUm() {
         return um;
@@ -104,7 +106,7 @@ public class SearchUserBean implements Serializable {
     
     public String searchUser(){
         try {
-            users = um.findUserByCombinationCriteria(userId, firstName, lastName, type, email);
+            userlist = um.findUserByCombinationCriteria(userId, firstName, lastName, type, email);
         } catch (Exception ex) {
             Logger.getLogger(SearchUserBean.class.getName()).log(Level.SEVERE, null, ex);
         }

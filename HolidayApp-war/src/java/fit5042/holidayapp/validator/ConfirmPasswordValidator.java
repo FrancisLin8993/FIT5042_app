@@ -7,7 +7,6 @@ package fit5042.holidayapp.validator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
@@ -16,6 +15,7 @@ import javax.faces.validator.ValidatorException;
 /**
  *
  * @author fengcilin
+ * Part of codes in this class are from stackoverflow page: https://stackoverflow.com/questions/7489893/how-validate-two-password-fields-by-ajax
  */
 @FacesValidator("confirmPasswordValidator")
 public class ConfirmPasswordValidator implements Validator{

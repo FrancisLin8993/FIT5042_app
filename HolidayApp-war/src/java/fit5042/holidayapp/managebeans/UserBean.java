@@ -41,19 +41,11 @@ public class UserBean implements Serializable {
     private HolidayUser user; 
     private HolidayPublic customer;
     private HolidayWorker worker;
-    private List<HolidayUser> users;
+    private List<HolidayUser> userlist;
     private UserType type;
     private Address address;
     private String message;
-    private int uid;
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
+    
 
     public HolidayUser getEditUser() {
         return editUser;
@@ -122,23 +114,26 @@ public class UserBean implements Serializable {
         this.type = type;
     }
 
-    public List<HolidayUser> getUsers() {
-        return users;
+    public List<HolidayUser> getUserlist() {
+        return userlist;
     }
+
+    public void setUserlist(List<HolidayUser> userlist) {
+        this.userlist = userlist;
+    }
+
     
     
     
     public void findUsers(){
         try {           
-            users = um.findAllUsers();
+            userlist = um.findAllUsers();
         } catch (Exception ex) {
             Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void setUsers(List<HolidayUser> users) {
-        this.users = users;
-    }
+    
 
     public UserManagement getUm() {
         return um;
@@ -267,18 +262,7 @@ public class UserBean implements Serializable {
         findUsers();
         setMessage("");
         
-        uid = Integer.valueOf(FacesContext.getCurrentInstance() 
-                         .getExternalContext()
-                         .getRequestParameterMap()
-                         .get("uid"));
-        if (uid != 0)
-        {
-            try {
-                this.user = um.findUserById(uid);
-            } catch (Exception ex) {
-                Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        
         
     }
     

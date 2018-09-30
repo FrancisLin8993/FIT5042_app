@@ -27,7 +27,7 @@ public class ProductBean implements Serializable{
 
     @EJB
     private ProductManagement pm;
-    private List<Product> products;
+    private List<Product> productList;
     private Product product;
 
     public Product getProduct() {
@@ -37,16 +37,18 @@ public class ProductBean implements Serializable{
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
     
     
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+    
     
     
     public ProductManagement getPm() {
@@ -59,7 +61,7 @@ public class ProductBean implements Serializable{
     
     public void getAllProducts(){
         try{
-            products = pm.findAllProducts();
+            productList = pm.findAllProducts();
         }catch(Exception ex){
             Logger.getLogger(ProductBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,7 +87,7 @@ public class ProductBean implements Serializable{
     @PostConstruct
     public void init(){
         getAllProducts();
-        //setMessage("");
+        
         
         
     }

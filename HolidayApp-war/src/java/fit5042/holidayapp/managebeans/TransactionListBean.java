@@ -7,14 +7,18 @@ package fit5042.holidayapp.managebeans;
 
 
 import fit5042.holidayapp.entities.HolidayTransaction;
+import fit5042.holidayapp.entities.HolidayUser;
 import fit5042.holidayapp.management.TransactionManagement;
+import fit5042.holidayapp.management.UserManagement;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 //import javax.faces.bean.RequestScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 //import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
@@ -28,15 +32,46 @@ public class TransactionListBean implements Serializable{
     
     @EJB
     private TransactionManagement tm;
+    @EJB
+    private UserManagement um;
+    private HolidayUser currentUser;
 
     public TransactionListBean()  {
         
     }
 
+    public UserManagement getUm() {
+        return um;
+    }
+
+    public void setUm(UserManagement um) {
+        this.um = um;
+    }
+    
+    
+
+    public HolidayUser getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(HolidayUser currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    
     public List<HolidayTransaction> getAllTransactions(){
         try{
             return tm.findAllTransaction();
         }catch(Exception ex){
+            Logger.getLogger(TransactionListBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<HolidayTransaction> getCurrentUserTransactions(){
+        try {
+            return tm.findTransacionOfPublic(currentUser.getUserId());
+        } catch (Exception ex) {
             Logger.getLogger(TransactionListBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -50,7 +85,13 @@ public class TransactionListBean implements Serializable{
         this.tm = tm;
     }
     
-    
+    @PostConstruct
+    public void init(){
+        String email = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        this.currentUser = um.findUserByEmail(email);
+        
+        
+    }
     
     
 }

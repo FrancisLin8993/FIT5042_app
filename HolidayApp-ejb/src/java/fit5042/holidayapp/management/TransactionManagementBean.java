@@ -41,11 +41,12 @@ public class TransactionManagementBean implements TransactionManagement{
     }
 
     @Override
-    public List<HolidayTransaction> findTransactions(int transactionNo, String name, TransactionType type) throws Exception {
+    public List<HolidayTransaction> findTransactions(int transactionNo, String name, TransactionType type, int userId) throws Exception {
         return em.createNamedQuery(HolidayTransaction.FIND_BY_CONDITION)
                 .setParameter("id", transactionNo)
                 .setParameter("name", name)
                 .setParameter("type", type)
+                .setParameter("uid", userId)
                 .getResultList();
     }
 
