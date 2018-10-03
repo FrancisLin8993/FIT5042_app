@@ -159,7 +159,7 @@ public class AddTransactionBean implements Serializable {
             this.transaction.setStatus(TransactionStatus.Created);
             this.transaction.setDescription(String.valueOf(new Date()));
             tm.addTransaction(transaction);
-            return "/transactionlist?faces-redirect=true.xhtml";
+            return "/Public/transactionlist?faces-redirect=true.xhtml";
         } catch (Exception ex) {
             Logger.getLogger(TransactionBean.class.getName()).log(Level.SEVERE, null, ex);
         }

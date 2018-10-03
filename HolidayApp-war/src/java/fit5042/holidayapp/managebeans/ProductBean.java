@@ -72,10 +72,7 @@ public class ProductBean implements Serializable{
         return "/product?faces-redirect=true.xhtml";
     }
     
-    public String directToBooking(Product product){
-        this.product = product;
-        return "/confirmbooking?faces-redirect=true.xhtml";
-    }
+    
     
     /**
      * Creates a new instance of productBean

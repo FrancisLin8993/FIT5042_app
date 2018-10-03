@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -29,6 +30,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({@NamedQuery(name = HolidayTransaction.FIND_ALL, query = "SELECT t FROM HolidayTransaction t"),
 @NamedQuery(name = HolidayTransaction.FIND_BY_CONDITION, query = "SELECT t FROM HolidayTransaction t WHERE t.customer.userId=:uid AND (t.transactionNo=:id OR t.name LIKE :name OR t.type=:type)"),
 })
+@XmlRootElement
 public class HolidayTransaction implements Serializable{
     public final static String FIND_ALL = "Transaction.findAll";
     public final static String FIND_BY_CONDITION = "Transaction.findByCondition";

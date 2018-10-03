@@ -35,6 +35,8 @@ public class TransactionListBean implements Serializable{
     @EJB
     private UserManagement um;
     private HolidayUser currentUser;
+    private HolidayUser user;
+    private int uid;
 
     public TransactionListBean()  {
         
@@ -58,6 +60,14 @@ public class TransactionListBean implements Serializable{
         this.currentUser = currentUser;
     }
 
+    public HolidayUser getUser() {
+        return user;
+    }
+
+    public void setUser(HolidayUser user) {
+        this.user = user;
+    }
+
     
     public List<HolidayTransaction> getAllTransactions(){
         try{
@@ -71,6 +81,21 @@ public class TransactionListBean implements Serializable{
     public List<HolidayTransaction> getCurrentUserTransactions(){
         try {
             return tm.findTransacionOfPublic(currentUser.getUserId());
+        } catch (Exception ex) {
+            Logger.getLogger(TransactionListBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<HolidayTransaction> getUserTransactions(){
+         uid = Integer.valueOf(FacesContext.getCurrentInstance() 
+                         .getExternalContext()
+                         .getRequestParameterMap()
+                         .get("uid"));
+         
+        try {
+            this.user = um.findUserById(uid);
+            return tm.findTransacionOfPublic(user.getUserId());
         } catch (Exception ex) {
             Logger.getLogger(TransactionListBean.class.getName()).log(Level.SEVERE, null, ex);
         }

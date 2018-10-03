@@ -122,7 +122,7 @@ public class SearchTransactionBean implements Serializable{
             Logger.getLogger(SearchTransactionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return "transactionsearchresult";
+        return "transactionsearchresult?faces-redirect=true.xhtml";
         
     }
     

@@ -179,24 +179,24 @@ public class UserBean implements Serializable {
         } catch (Exception ex) {
             Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "/userlist?faces-redirect=true.xhtml";
+        return "/Worker/userlist?faces-redirect=true.xhtml";
     }
     
     public String displayUserDetail(HolidayUser user){
         this.user = user;
-        return "/user?faces-redirect=true.xhtml";
+        return "/Worker/user?faces-redirect=true.xhtml";
     }
     
     public String redirectAddPublicPage(){
         this.customer = new HolidayPublic();
         this.address = new Address();
-        return "/addpublic?faces-redirect=true.xhtml";
+        return "/Worker/addpublic?faces-redirect=true.xhtml";
     }
     
     public String redirectAddWorkerPage(){        
         this.worker = new HolidayWorker();
         this.address = new Address();
-        return "/addworker?faces-redirect=true.xhtml";
+        return "/Worker/addworker?faces-redirect=true.xhtml";
     }
     
     public boolean isPublicHasTransactions(){
@@ -225,7 +225,7 @@ public class UserBean implements Serializable {
                 message = "User has removed.";
             }
                         
-            return "/userlist?faces-redirect=true.xhtml";
+            return "/Worker/userlist?faces-redirect=true.xhtml";
         } 
         catch (Exception ex) 
         {
@@ -240,7 +240,7 @@ public class UserBean implements Serializable {
         
         this.editUser = user;
         
-        return "/edituser?faces-redirect=true.xhtml";
+        return "/Worker/edituser?faces-redirect=true.xhtml";
     }
     
     public String updateUser() {    
@@ -248,7 +248,7 @@ public class UserBean implements Serializable {
         try {
             um.updateUser(editUser);
             message = "User details has updated.";
-            return "/userlist?faces-redirect=true.xhtml";
+            return "/Worker/userlist?faces-redirect=true.xhtml";
         } catch (Exception ex) {
             Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
             message = "User details has failed to update.";            

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/Public/transaction.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>changestatus</from-outcome>
+            <to-view-id>/Worker/changetranstatus.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Worker/changetranstatus.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>return</from-outcome>
+            <to-view-id>/Public/transactionlist.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/product.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>booking</from-outcome>
+            <to-view-id>/Public/confirmbooking.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Worker/usertransactionlist.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>detail</from-outcome>
+            <to-view-id>/Public/transaction.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

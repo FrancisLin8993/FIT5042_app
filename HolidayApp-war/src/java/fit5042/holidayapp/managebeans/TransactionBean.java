@@ -114,7 +114,7 @@ public class TransactionBean implements Serializable{
         this.transaction.setStatus(status);
         try {
             tm.updateTransaction(transaction);
-            return "/transactionlist?faces-redirect=true.xhtml";
+            return "/Public/transactionlist?faces-redirect=true.xhtml";
         } catch (Exception ex) {
             Logger.getLogger(TransactionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,7 +125,7 @@ public class TransactionBean implements Serializable{
         this.transaction.setStatus(TransactionStatus.Cancelled);
         try {
             tm.updateTransaction(transaction);
-            return "/transactionlist?faces-redirect=true.xhtml";
+            return "/Public/transactionlist?faces-redirect=true.xhtml";
         } catch (Exception ex) {
             Logger.getLogger(TransactionBean.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -42,15 +42,17 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.xhtml">Home</a></li>
-                            <li><a href="productlist.xhtml">Holiday Packages</a></li>
+                            <li><a href="/HolidayApp-war/faces/index.xhtml">Home</a></li>
+                            <li><a href="/HolidayApp-war/faces/productlist.xhtml">Holiday Packages</a></li>
                             
                             <ui:fragment rendered="#{not empty request.remoteUser}">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transaction<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="searchtransaction.xhtml">Search Transaction</a></li>
-                                  <li><a href="transactionlist.xhtml">Transaction List</a></li>
+                                    <ui:fragment rendered="#{request.isUserInRole('Public')}">
+                                        <li><a href="/HolidayApp-war/Public/searchtransaction.xhtml">Search Transaction</a></li>
+                                    </ui:fragment>
+                                    <li><a href="/HolidayApp-war/Public/transactionlist.xhtml">Transaction List</a></li>
                                 </ul>
                             </li>
                             </ui:fragment>
@@ -65,8 +67,8 @@
                                     <li><a href="/HolidayApp-war/Public/personalinfo.xhtml">Personal Information</a></li>
                                   </ui:fragment>
                                   <ui:fragment rendered="#{request.isUserInRole('Worker')}">
-                                    <li><a href="userlist.xhtml">User List</a></li>
-                                    <li><a href="searchuser.xhtml">Search User</a></li>
+                                    <li><a href="/HolidayApp-war/Worker/userlist.xhtml">User List</a></li>
+                                    <li><a href="/HolidayApp-war/Worker/searchuser.xhtml">Search User</a></li>
                                   </ui:fragment>
                                 </ul>
                             </li>

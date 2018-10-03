@@ -12,6 +12,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @DiscriminatorValue(value = "Public")
+@XmlRootElement
 public class HolidayPublic extends HolidayUser implements Serializable{
     
     private Set<HolidayTransaction> transaction;

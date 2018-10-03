@@ -33,12 +33,15 @@ public class ProductManagementBean implements ProductManagement{
         CriteriaQuery cq = cb.createQuery(Product.class);
         Root<Product> r = cq.from(Product.class);
         cq.select(r);
+        
         return em.createQuery(cq).getResultList();
         
     }
 
     @Override
     public Product findProductById(int id) throws Exception {
-        return em.find(Product.class, id);
+        Product product = em.find(Product.class, id);
+        product.getTrasaction().size();
+        return product;
     }
 }

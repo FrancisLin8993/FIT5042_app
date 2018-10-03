@@ -35,9 +35,12 @@ and open the template in the editor.
                         <hr />
                         <p>
                             <ui:fragment rendered="#{request.isUserInRole('Public')}">
-                                <h:commandLink value="Book This Package" action="confirmbooking" class="btn btn-primary">
+                                <!--<h:commandLink value="Book This Package" action="{productBean.directToBooking()}" class="btn btn-primary">
+                                    <f:param name="pid" value="{productBean.product.id}" />
+                                </h:commandLink> -->
+                                <h:link value="Book This Package" outcome="booking" class="btn btn-primary">
                                     <f:param name="pid" value="#{productBean.product.id}" />
-                                </h:commandLink> 
+                                </h:link>
                             </ui:fragment>
                         </p>
                         </h:form>

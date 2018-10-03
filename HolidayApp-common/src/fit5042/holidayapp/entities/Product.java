@@ -17,12 +17,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author fengcilin
  */
 @Entity
+@XmlRootElement
 public class Product implements Serializable{
     
     private int Id;
