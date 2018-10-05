@@ -19,7 +19,7 @@ and open the template in the editor.
                 <div class="container">
                     <div class="jumbotron">
                         <h1>Holiday Packages List</h1>
-                        <h:outputLabel class="alert alert-warning alert-dismissible" id="msglabel" rendered="{not empty productBean.message}" value="{productBean.message}"/>
+                        <h:outputLabel class="alert alert-warning" id="msglabel" rendered="#{not empty productBean.message}" value="#{productBean.message}"/>
                         <div>
                             <h:form>
                                 <h:dataTable value="#{productBean.productList}" var="p" class="table">
@@ -37,12 +37,17 @@ and open the template in the editor.
                                     
                                 <h:column>
                                     <f:facet name="header">Start Date</f:facet>
-                                    #{p.startDate}
+                                    <h:outputText value="#{p.startDate}" >
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:outputText> 
+                                    
                                 </h:column>
                                     
                                 <h:column>
                                     <f:facet name="header">End Date</f:facet>
-                                    #{p.endDate}
+                                    <h:outputText value="#{p.endDate}" >
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:outputText> 
                                 </h:column>
 
                                 <h:column>
@@ -52,25 +57,30 @@ and open the template in the editor.
                                         </h:commandLink>
                                 </h:column>
                                     
-                                <!--<h:column>
-                                    <h:commandLink value="Edit" action="{}">
-                                            <f:param name="pid" value="{u.userId}" />
-                                    </h:commandLink>
-                                    
-                                </h:column>
-                                    
-                                <h:column>
+                                
+                                    <h:column rendered="#{request.isUserInRole('Worker')}">
                                         
-                                    <h:commandLink value="Remove" action="{}">
-                                            <f:param name="uid" value="{u.userId}" />
-                                    </h:commandLink>
-                                </h:column>-->
+                                        <h:commandLink value="Edit" action="#{productBean.redirectEditProductPage(p)}">
+                                                <f:param name="pid" value="#{p.id}" />
+                                        </h:commandLink>
 
-
-                                </h:dataTable>
+                                    </h:column>
+                                
+                                    
+                                    <h:column rendered="#{request.isUserInRole('Worker')}">
+                                        
+                                        <h:commandLink value="Remove" action="#{productBean.removeProduct(p)}">
+                                                <f:param name="pid" value="{p.id}" />
+                                        </h:commandLink>
+                                    </h:column>
                                 
 
+                                </h:dataTable>
+                                <ui:fragment rendered="#{request.isUserInRole('Worker')}">
+                                  <!--  <h:link outcome="addproduct" id="addpublicsubmit" value="Add A Product" class="btn btn-primary"/>-->
+                                  <h:commandLink action="#{productBean.redirectAddProductPage()}" id="addproductsubmit" value="Add A Product" class="btn btn-primary"/>
 
+                                </ui:fragment>
                             </h:form>
                         </div>
                     </div>

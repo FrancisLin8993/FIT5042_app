@@ -24,7 +24,9 @@ public interface TransactionManagement {
     
     List<HolidayTransaction> findAllTransaction() throws Exception;
     
-    List<HolidayTransaction> findTransacionOfPublic(int publicId) throws Exception;
+    List<HolidayTransaction> findTransactionOfPublic(int publicId) throws Exception;
+    
+    List<HolidayTransaction> findTransactionOfProduct(int productId) throws Exception;
     
     void updateTransaction(HolidayTransaction transaction) throws Exception;
     

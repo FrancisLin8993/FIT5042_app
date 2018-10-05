@@ -26,8 +26,12 @@ and open the template in the editor.
                             <li>Product Description:   #{productBean.product.description}</li>
                             <li>Hotel Name:   #{productBean.product.hotelName}</li>
                             <li>Airline Name:   #{productBean.product.airlineName}</li>
-                            <li>Journey Start Date:   #{productBean.product.startDate}</li>
-                            <li>Journey End Date:   #{productBean.product.endDate}</li> 
+                            <li>Journey Start Date:   <h:outputText value="#{productBean.product.startDate}" >
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:outputText> </li>
+                            <li>Journey End Date:   <h:outputText value="#{productBean.product.endDate}" >
+                                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                                    </h:outputText></li> 
                             <li>Price:   #{productBean.product.price}</li>
 
                         </ul>
@@ -35,15 +39,19 @@ and open the template in the editor.
                         <hr />
                         <p>
                             <ui:fragment rendered="#{request.isUserInRole('Public')}">
-                                <!--<h:commandLink value="Book This Package" action="{productBean.directToBooking()}" class="btn btn-primary">
-                                    <f:param name="pid" value="{productBean.product.id}" />
-                                </h:commandLink> -->
+                                
                                 <h:link value="Book This Package" outcome="booking" class="btn btn-primary">
                                     <f:param name="pid" value="#{productBean.product.id}" />
                                 </h:link>
                             </ui:fragment>
+                            
+                            
                         </p>
                         </h:form>
+                        
+                        
+                        
+                        
                         <!-- Link back to the List page -->
                         <p>
                             <h:link value="Back to Product List" outcome="productlist" class="btn btn-default"/> 

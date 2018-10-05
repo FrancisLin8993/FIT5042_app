@@ -19,4 +19,10 @@ public interface ProductManagement {
     List<Product> findAllProducts() throws Exception;
     
     Product findProductById(int id) throws Exception;
+    
+    void addProduct(Product product) throws Exception;
+    
+    void removeProduct(int id) throws Exception;
+    
+    void updateProduct(Product product) throws Exception;
 }

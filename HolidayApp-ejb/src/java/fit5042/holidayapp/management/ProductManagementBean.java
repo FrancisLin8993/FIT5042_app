@@ -44,4 +44,26 @@ public class ProductManagementBean implements ProductManagement{
         product.getTrasaction().size();
         return product;
     }
+
+    @Override
+    public void addProduct(Product product) throws Exception {
+        em.persist(product);
+    }
+
+    @Override
+    public void removeProduct(int id) throws Exception {
+        Product product = this.findProductById(id);
+        if(product == null){
+            throw new Exception("Product does not existed");
+        }
+        else{
+            em.remove(product);
+        }
+    }
+    
+
+    @Override
+    public void updateProduct(Product product) throws Exception {
+        em.merge(product);
+    }
 }

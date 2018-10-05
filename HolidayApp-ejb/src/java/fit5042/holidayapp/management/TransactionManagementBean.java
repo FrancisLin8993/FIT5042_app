@@ -51,7 +51,7 @@ public class TransactionManagementBean implements TransactionManagement{
     }
 
     @Override
-    public List<HolidayTransaction> findTransacionOfPublic(int publicId) throws Exception {
+    public List<HolidayTransaction> findTransactionOfPublic(int publicId) throws Exception {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery(HolidayTransaction.class);
         Root<HolidayTransaction> r = cq.from(HolidayTransaction.class);
@@ -70,6 +70,16 @@ public class TransactionManagementBean implements TransactionManagement{
     public void addTransaction(HolidayTransaction transaction) throws Exception {
         
         em.persist(transaction);
+    }
+
+    @Override
+    public List<HolidayTransaction> findTransactionOfProduct(int productId) throws Exception {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery(HolidayTransaction.class);
+        Root<HolidayTransaction> r = cq.from(HolidayTransaction.class);
+        cq.where(cb.equal(r.get("product").get("id"), productId));
+        cq.select(r);
+        return em.createQuery(cq).getResultList();
     }
     
     

@@ -80,7 +80,7 @@ public class TransactionListBean implements Serializable{
     
     public List<HolidayTransaction> getCurrentUserTransactions(){
         try {
-            return tm.findTransacionOfPublic(currentUser.getUserId());
+            return tm.findTransactionOfPublic(currentUser.getUserId());
         } catch (Exception ex) {
             Logger.getLogger(TransactionListBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,7 +95,7 @@ public class TransactionListBean implements Serializable{
          
         try {
             this.user = um.findUserById(uid);
-            return tm.findTransacionOfPublic(user.getUserId());
+            return tm.findTransactionOfPublic(user.getUserId());
         } catch (Exception ex) {
             Logger.getLogger(TransactionListBean.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -33,4 +33,33 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/productlist.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>addproduct</from-outcome>
+            <to-view-id>/Worker/addproduct.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{productBean.redirectAddProductPage()}</from-action>
+            <to-view-id>/Worker/addproduct.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Worker/addproduct.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{productBean.addProduct()}</from-action>
+            <to-view-id>/productlist.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Worker/editproduct.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{productBean.updateProduct()}</from-action>
+            <to-view-id>/productlist.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>productlist</from-outcome>
+            <to-view-id>/productlist.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

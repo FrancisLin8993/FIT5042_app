@@ -17,6 +17,8 @@ import fit5042.holidayapp.management.UserManagement;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -148,10 +150,12 @@ public class AddTransactionBean implements Serializable {
     
     public String bookProduct(){
         this.transaction = new HolidayTransaction();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
+        String stringOfDate = formatter.format(date);
         this.transaction.setStatus(TransactionStatus.Created);
-        this.transaction.setDescription("This Transaction was created at " + String.valueOf(date));
-        this.transaction.setName(user.getUserId() + " " + String.valueOf(date));
+        this.transaction.setDescription("This Transaction was created at " + stringOfDate);
+        this.transaction.setName(user.getUserId() + "-" + stringOfDate);
         this.transaction.setType(ttype);
         try {                
             this.transaction.setCustomer((HolidayPublic) user);            

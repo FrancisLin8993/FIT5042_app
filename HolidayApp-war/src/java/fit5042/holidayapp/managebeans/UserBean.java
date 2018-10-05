@@ -201,7 +201,7 @@ public class UserBean implements Serializable {
     
     public boolean isPublicHasTransactions(){
         try{
-            return tm.findTransacionOfPublic(user.getUserId()).size() > 0;
+            return tm.findTransactionOfPublic(user.getUserId()).size() > 0;
                          
         }catch (Exception ex) {
             Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);

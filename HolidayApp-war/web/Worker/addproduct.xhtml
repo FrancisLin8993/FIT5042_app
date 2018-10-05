@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add A Product</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="/site.css" ></h:outputStylesheet>
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT" crossorigin="anonymous"></link>               
+        <script src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+            <!--<h:outputScript name="js/bootstrap.js" />-->
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/layout.xhtml">
+            <ui:define name="content">
+                    <div class="container">
+                        <div class="jumbotron">
+                        <h1>Add A Product</h1>
+                        <h:form id="addproductform">
+                            <!--Product Name -->
+                            <div class="form-group">
+                                <h:outputLabel for="productname">
+                                    Product Name:
+                                    <h:message for="productname"  style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="productname" class="form-control" label="productname" required="true" requiredMessage="Please enter a product name"
+                                             size="32" value="#{productBean.product.productName}">                                                             
+                                </h:inputText>
+
+                            </div>
+                            <!--Product Description -->
+                            <div class="form-group">
+                                <h:outputLabel for="productdesc">
+                                    Product Description:
+                                    <h:message for="productdesc"  style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="productdesc" class="form-control" label="productdesc" required="true" requiredMessage="Please enter a product description"
+                                             size="32" value="#{productBean.product.description}">                                                             
+                                </h:inputText>
+
+                            </div>
+                            
+                            <!--Hotel Name -->
+                            <div class="form-group">
+                                <h:outputLabel for="hotelname">
+                                    Hotel Name:
+                                    <h:message for="hotelname"  style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="hotelname" class="form-control" label="hotelname" required="true" requiredMessage="Please enter a hotel name"
+                                             size="32" value="#{productBean.product.hotelName}">                                                             
+                                </h:inputText>
+
+                            </div>
+                            
+                            
+                            <!--Airline Name -->
+                            <div class="form-group">
+                                <h:outputLabel for="airlinename">
+                                    Airline Name:
+                                    <h:message for="airlinename"  style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="airlinename" class="form-control" label="airlinename" required="true" requiredMessage="Please enter an airline name"
+                                             size="32" value="#{productBean.product.airlineName}">                                                             
+                                </h:inputText>
+
+                            </div>
+                            
+                            <!--Start Date -->
+                            <div class="form-group">
+                                <h:outputLabel for="startdate">
+                                    Start Date(yyyy-mm-dd):
+                                    <h:message for="startdate" id="startdatemsg"  style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="startdate" class="form-control" label="startdate" required="true" requiredMessage="Please enter a start date" converterMessage="Please enter a valid format"
+                                             size="32" value="#{productBean.product.startDate}">      
+                                    <f:convertDateTime pattern = "yyyy-mm-dd" />
+                                    <!--<f:validator validatorId="compareDateValidator" />
+                                    <f:attribute name="enddate" value="{enddate.submittedValue}" />
+                                    <f:ajax event="blur" execute="startdate enddate" render="startdatemsg" />-->
+                                </h:inputText>
+
+                            </div>
+                            
+                            <!--End Date -->
+                            <div class="form-group">
+                                <h:outputLabel for="enddate">
+                                    End Date(yyyy-mm-dd):
+                                    <h:message for="enddate" id="enddatemsg" style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="enddate" class="form-control" label="enddate" required="true" requiredMessage="Please enter a end date" converterMessage="Please enter a valid format"
+                                              size="32" value="#{productBean.product.endDate}">   
+                                    <f:convertDateTime pattern = "yyyy-mm-dd" />
+                                    <!--<f:ajax event="blur" execute="startdate enddate" render="startdatemsg enddatemsg" />-->
+                                </h:inputText>
+
+                            </div>
+                            
+                            <!--Price -->
+                            <div class="form-group">
+                                <h:outputLabel for="price">
+                                    Price:
+                                    <h:message for="price"  style="color:red;">
+                                    </h:message>
+                                </h:outputLabel>
+                                <h:inputText id="price" class="form-control" label="price" required="true" requiredMessage="Please enter a price"
+                                             size="32" value="#{productBean.product.price}" converterMessage="You must enter a number"> 
+                                    <f:convertNumber />
+                                </h:inputText>
+
+                            </div>
+                            
+                            
+                            
+                            <!--Submit Button -->
+                            
+                            <h:commandLink action="#{productBean.addProduct()}" id="addproductsubmit" value="Submit" class="btn btn-primary" />
+                                
+                           
+                        </h:form>
+                            
+                            <hr /> 
+
+                            <h:link value="Back to Product List" outcome="/HolidayApp-war/productlist?faces-redirect=true.xhtml" class="btn btn-default"/> 
+                        
+                        </div>
+                    </div>
+                    
+                </ui:define>
+            
+            
+        </ui:composition>
+        
+    </h:body>
+</html>
