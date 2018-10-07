@@ -26,7 +26,7 @@ import javax.faces.context.FacesContext;
 
 
 /**
- *
+ * Manage Bean of user management functions.
  * @author fengcilin
  */
 @Named(value = "userBean")
@@ -124,7 +124,9 @@ public class UserBean implements Serializable {
 
     
     
-    
+    /**
+     * Find all the users in the system.
+     */
     public void findUsers(){
         try {           
             userlist = um.findAllUsers();
@@ -152,12 +154,14 @@ public class UserBean implements Serializable {
     }
     
     
-    /**
-     * Creates a new instance of UserBean
-     */
+    
     public UserBean() {
     }
     
+    /**
+     * Add a user into system.
+     * @return 
+     */
     public String addUser() {
         try {
             if (this.customer != null)
@@ -199,6 +203,10 @@ public class UserBean implements Serializable {
         return "/Worker/addworker?faces-redirect=true.xhtml";
     }
     
+    /**
+     * Check whether a public user has transactions.
+     * @return 
+     */
     public boolean isPublicHasTransactions(){
         try{
             return tm.findTransactionOfPublic(user.getUserId()).size() > 0;
@@ -209,11 +217,17 @@ public class UserBean implements Serializable {
         return false;
     }
     
+    /**
+     * Remove a user.
+     * @param user
+     * @return 
+     */
     public String removeUser(HolidayUser user){
         
         this.user = user;
         try 
         {
+            //If a public user has transactions, it cannot be removed.
             if (user.getUserType().equals(UserType.valueOf("Public")) && (isPublicHasTransactions() == true))
             {
                 message = "Sorry, A user with transaction records cannot be removed.";
@@ -243,6 +257,10 @@ public class UserBean implements Serializable {
         return "/Worker/edituser?faces-redirect=true.xhtml";
     }
     
+    /**
+     * Update a user information.
+     * @return 
+     */
     public String updateUser() {    
         
         try {
@@ -254,6 +272,14 @@ public class UserBean implements Serializable {
             message = "User details has failed to update.";            
             return "";
         }
+    }
+    
+    public void setMessageToNull(){
+        if (FacesContext.getCurrentInstance().isPostback())
+        {
+            message = "";
+        }
+        
     }
     
     

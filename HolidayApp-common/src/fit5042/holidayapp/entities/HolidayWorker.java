@@ -10,7 +10,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
- *
+ * A class of worker type user.
  * @author fengcilin
  */
 @Entity

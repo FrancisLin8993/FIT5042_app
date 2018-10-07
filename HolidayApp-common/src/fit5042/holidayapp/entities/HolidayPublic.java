@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * A class of public user in the application
  * @author fengcilin
  */
 @Entity
@@ -35,6 +35,10 @@ public class HolidayPublic extends HolidayUser implements Serializable{
     
     
 
+    /**
+     * The Collection of transactions a specific public has.
+     * @return 
+     */
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     public Set<HolidayTransaction> getTransaction() {
         return transaction;

@@ -22,7 +22,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
- *
+ * Manage Bean of Search Transaction Page.
  * @author fengcilin
  */
 @SessionScoped
@@ -106,14 +106,11 @@ public class SearchTransactionBean implements Serializable{
         this.tm = tm;
     }
 
-    /*public List<HolidayTransaction> getTransaction() {
-        return transactions;
-    }
-
-    public void setTransaction(List<HolidayTransaction> transactions) {
-        this.transactions = transactions;
-    }*/
     
+    /**
+     * Search transactions according to following criteria.
+     * @return 
+     */
     public String searchTransaction(){
         try{
             transactionList = tm.findTransactions(tno, tname, type, currentUser.getUserId());
@@ -126,6 +123,9 @@ public class SearchTransactionBean implements Serializable{
         
     }
     
+    /**
+     * Get the current login user.
+     */
     @PostConstruct
     public void init(){
         String email = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();

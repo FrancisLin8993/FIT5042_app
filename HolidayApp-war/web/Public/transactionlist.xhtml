@@ -24,6 +24,8 @@ and open the template in the editor.
                         <h1>Transaction List</h1>
                         <div>
                             <h:form id="tform">
+                                <!--If the current login user is a worker, it will display all the transactions in the system. 
+                                If the current user is a public, it will only display the public's transactions.-->
                                 <h:dataTable value="#{request.isUserInRole('Worker') ? transactionListBean.allTransactions : transactionListBean.currentUserTransactions}" var="t" class="table" id="datatable">
                                 <h:column>
                                         
@@ -51,15 +53,7 @@ and open the template in the editor.
                                         </h:link>
                                 </h:column>
                                 
-                                <!--<ui:fragment rendered="{request.isUserInRole('Worker')}">
-                                    <h:column>
-
-                                            <h:link value="Change Status" outcome="changetranstatus?faces-redirect=true.xhtml">
-                                                <f:param name="tno" value="{t.transactionNo}" />
-                                            </h:link>
-                                    </h:column>
-                                </ui:fragment>-->
-
+                                
                                 </h:dataTable>
                                 
                             </h:form>

@@ -6,7 +6,7 @@
 package fit5042.holidayapp.entities;
 
 /**
- *
+ * A enum class of Transaction type.
  * @author fengcilin
  */
 public enum TransactionType {

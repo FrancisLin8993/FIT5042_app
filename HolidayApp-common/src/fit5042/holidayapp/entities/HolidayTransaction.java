@@ -23,7 +23,7 @@ import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * A class of transactions created by publics
  * @author fengcilin
  */
 @Entity
@@ -56,7 +56,10 @@ public class HolidayTransaction implements Serializable{
     }
 
     
-
+    /**
+     * Unique ID number of a transaction
+     * @return 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getTransactionNo() {
@@ -67,6 +70,10 @@ public class HolidayTransaction implements Serializable{
         this.transactionNo = transactionNo;
     }
 
+    /**
+     * Name of the transaction.
+     * @return 
+     */
     public String getName() {
         return name;
     }
@@ -76,8 +83,11 @@ public class HolidayTransaction implements Serializable{
     }
 
 
-
-    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    
+    /**
+     * The public creating the transaction.
+     * @return 
+     */
     @ManyToOne
     @JoinColumn(name = "public_id", nullable= false)
     public HolidayPublic getCustomer() {
@@ -88,6 +98,10 @@ public class HolidayTransaction implements Serializable{
         this.customer = customer;
     }
 
+    /**
+     * The description of the transaction.
+     * @return 
+     */
     public String getDescription() {
         return description;
     }
@@ -96,6 +110,10 @@ public class HolidayTransaction implements Serializable{
         this.description = description;
     }
     
+    /**
+     * The status of the transaction.
+     * @return 
+     */
     @Enumerated(EnumType.STRING)
     public TransactionStatus getStatus() {
         return status;
@@ -105,7 +123,10 @@ public class HolidayTransaction implements Serializable{
         this.status = status;
     }
 
-    
+    /**
+     * The type of the transaction.
+     * @return 
+     */
     @Enumerated(EnumType.STRING)
     @Column(name="TRANSACTIONTYPE")
     public TransactionType getType() {
@@ -115,7 +136,11 @@ public class HolidayTransaction implements Serializable{
     public void setType(TransactionType type) {
         this.ttype = type;
     }
-    //@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    
+    /**
+     * The booking product in the transaction.
+     * @return 
+     */
     @ManyToOne
     @JoinColumn(name = "product_id", nullable= false)
     public Product getProduct() {

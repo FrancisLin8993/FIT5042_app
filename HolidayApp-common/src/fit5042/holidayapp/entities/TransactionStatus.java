@@ -6,7 +6,7 @@
 package fit5042.holidayapp.entities;
 
 /**
- *
+ * An Enum class of Transaction Status
  * @author fengcilin
  */
 public enum TransactionStatus {

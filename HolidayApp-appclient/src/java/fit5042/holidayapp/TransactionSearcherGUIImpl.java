@@ -10,7 +10,6 @@ import fit5042.holidayapp.entities.TransactionType;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
@@ -27,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 /**
- *
+ * Implementation of the GUI interface
  * @author fengcilin
  */
 public class TransactionSearcherGUIImpl extends JFrame implements TransactionSearcherGUI{
@@ -197,6 +196,10 @@ public class TransactionSearcherGUIImpl extends JFrame implements TransactionSea
         JOptionPane.showMessageDialog(this, message);
     }
 
+    /**
+     * Display All the transaction details in the table.
+     * @param transaction 
+     */
     @Override
     public void displayTransactionDetails(HolidayTransaction transaction) {
         this.clearTransactionTable();
@@ -212,6 +215,10 @@ public class TransactionSearcherGUIImpl extends JFrame implements TransactionSea
         });    
     }
 
+    /**
+     * Display the single transaction details in the input panel.
+     * @param transaction 
+     */
     @Override
     public void displaySelectedTransactionDetails(HolidayTransaction transaction) {
         this.transactionNoField.setText(String.valueOf(transaction.getTransactionNo()));           
@@ -223,6 +230,10 @@ public class TransactionSearcherGUIImpl extends JFrame implements TransactionSea
         this.typeComboBox.setSelectedItem(transaction.getType());
     }
 
+    /**
+     * Display a collection of transaction details in the table.
+     * @param transactions 
+     */
     @Override
     public void displayTransactionDetails(List<HolidayTransaction> transactions) {
         this.clearTransactionTable();

@@ -13,7 +13,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- *
+ * A validator of comparing password and confirmation of passowrd and check whether they are matched.
  * @author fengcilin
  * Part of codes in this class are from stackoverflow page: https://stackoverflow.com/questions/7489893/how-validate-two-password-fields-by-ajax
  */

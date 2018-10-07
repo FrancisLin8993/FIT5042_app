@@ -6,7 +6,7 @@
 package fit5042.holidayapp.entities;
 
 /**
- *
+ * A enum class of user type.
  * @author fengcilin
  */
 public enum UserType {

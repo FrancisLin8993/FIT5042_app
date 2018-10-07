@@ -11,7 +11,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
 /**
- *
+ * A class defined a user class which is embedded in the user table in database.
  * @author fengcilin
  */
 @Embeddable

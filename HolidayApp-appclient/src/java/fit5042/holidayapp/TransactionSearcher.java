@@ -18,7 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- *
+ * Main Class of the GUI Application
  * @author fengcilin
  */
 public class TransactionSearcher implements ActionListener, ListSelectionListener{
@@ -32,6 +32,9 @@ public class TransactionSearcher implements ActionListener, ListSelectionListene
         this.name = name;
     }
     
+    /**
+     * Initialize the GUI
+     */
     public void initView() {
         this.gui = new TransactionSearcherGUIImpl(this, this);
         this.displayAllTransactions();
@@ -81,6 +84,9 @@ public class TransactionSearcher implements ActionListener, ListSelectionListene
         }
     }
 
+    /**
+     * Display All Transactions in the system.
+     */
     private void displayAllTransactions() {
         try {
             List<HolidayTransaction> transactions = tm.findAllTransaction();
@@ -93,7 +99,11 @@ public class TransactionSearcher implements ActionListener, ListSelectionListene
             this.gui.displayMessageInDialog("Failed to retrieve properties: " + ex.getMessage());
         }
     }
-
+    
+    
+    /**
+     * Search Transaction by transaction number.
+     */
     private void searchTransactions() {
         int tno = this.gui.getTransactionNo();
         String tname = this.gui.getTransactionName();

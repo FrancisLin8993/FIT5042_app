@@ -25,7 +25,7 @@ import javax.validation.constraints.Pattern;
 import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
 
 /**
- *
+ * A class of the user in the application.
  * @author fengcilin
  */
 @Entity
@@ -62,7 +62,10 @@ public class HolidayUser implements Serializable{
     }
     
     
-    
+    /**
+     * Unique user id of a user.
+     * @return 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getUserId() {
@@ -73,6 +76,10 @@ public class HolidayUser implements Serializable{
         this.userId = userId;
     }
 
+    /**
+     * Last name of a user.
+     * @return 
+     */
     @NotNull(message = "Please enter your last name.")
     @Pattern(regexp = "^[A-Za-z]+$", message = "Sorry, names cannot contain numberic characters.")
     public String getLastName() {
@@ -83,6 +90,10 @@ public class HolidayUser implements Serializable{
         this.lastName = lastName;
     }
 
+    /**
+     * First name of a user.
+     * @return 
+     */
     @NotNull(message = "Please enter your first name.")
     @Pattern(regexp = "^[A-Za-z]+$", message = "Sorry, names cannot contain numberic characters.")
     public String getFirstName() {
@@ -93,6 +104,10 @@ public class HolidayUser implements Serializable{
         this.firstName = firstName;
     }
 
+    /**
+     * Email of a user.
+     * @return 
+     */
     @NotNull(message = "Please enter your email")
     @Pattern(regexp = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
             message = "Sorry, your input email does not conform to the correct format.")
@@ -104,6 +119,10 @@ public class HolidayUser implements Serializable{
         this.email = email;
     }
 
+    /**
+     * password of a user.
+     * @return 
+     */
     public String getPassword() {
         return password;
     }
@@ -111,6 +130,11 @@ public class HolidayUser implements Serializable{
     public void setPassword(String password) {
         this.password = sha256Hex(password);
     }
+    
+    /**
+     * Address of a user.
+     * @return 
+     */
     @Embedded
     public Address getAddress() {
         return address;
@@ -120,6 +144,10 @@ public class HolidayUser implements Serializable{
         this.address = address;
     }
 
+    /**
+     * Phone number of a user.
+     * @return 
+     */
     @NotNull(message = "Please enter your phone number.")
     @Pattern(regexp = "^9\\d{7}|0\\d{9}$", 
            message = "Your phone number have to be 8 digits long if starting with 9, or be 10 digits long if starting with 0.")
@@ -131,6 +159,10 @@ public class HolidayUser implements Serializable{
         this.phoneNo = phoneNo;
     }
     
+    /**
+     * Type of a user.
+     * @return 
+     */
     @Enumerated(EnumType.STRING)
     @Column(name="USERTYPE")
     public UserType getUserType() {

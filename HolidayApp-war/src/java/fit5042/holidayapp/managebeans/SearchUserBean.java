@@ -18,7 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
 /**
- *
+ * Manage Bean of Search User Page.
  * @author fengcilin
  */
 @Named(value = "searchUserBean")
@@ -97,13 +97,14 @@ public class SearchUserBean implements Serializable {
     }
     
     
-    /**
-     * Creates a new instance of SearchUserBean
-     */
+    
     public SearchUserBean() {
     }
     
-    
+    /**
+     * Search a user by combination of following criteria.
+     * @return 
+     */
     public String searchUser(){
         try {
             userlist = um.findUserByCombinationCriteria(userId, firstName, lastName, type, email);

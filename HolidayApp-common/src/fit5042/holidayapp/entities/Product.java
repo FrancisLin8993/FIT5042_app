@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * A class of Holiday Package Product.
  * @author fengcilin
  */
 @Entity
@@ -53,7 +53,10 @@ public class Product implements Serializable{
     }
 
     
-
+    /**
+     * Unique ID of a product.
+     * @return 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
@@ -64,6 +67,10 @@ public class Product implements Serializable{
         this.Id = Id;
     }
 
+    /**
+     * Name of a product.
+     * @return 
+     */
     @NotNull(message = "Please enter a product name")
     public String getProductName() {
         return productName;
@@ -73,6 +80,10 @@ public class Product implements Serializable{
         this.productName = productName;
     }
 
+    /**
+     * Description of a product.
+     * @return 
+     */
     public String getDescription() {
         return description;
     }
@@ -81,6 +92,10 @@ public class Product implements Serializable{
         this.description = description;
     }
 
+    /**
+     * Hotel name in a product.
+     * @return 
+     */
     public String getHotelName() {
         return hotelName;
     }
@@ -89,6 +104,10 @@ public class Product implements Serializable{
         this.hotelName = hotelName;
     }
 
+    /**
+     * Airline company name in a product.
+     * @return 
+     */
     public String getAirlineName() {
         return airlineName;
     }
@@ -97,6 +116,10 @@ public class Product implements Serializable{
         this.airlineName = airlineName;
     }
 
+    /**
+     * Start Date of the journey of the holiday package.
+     * @return 
+     */
     @NotNull(message = "please enter a start date")
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getStartDate() {
@@ -107,6 +130,10 @@ public class Product implements Serializable{
         this.startDate = startDate;
     }
 
+    /**
+     * End Date of the journey of the holiday package.
+     * @return 
+     */
     @NotNull(message = "please enter a end date")
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date getEndDate() {
@@ -117,6 +144,10 @@ public class Product implements Serializable{
         this.endDate = endDate;
     }
 
+    /**
+     * Price of a holiday package product.
+     * @return 
+     */
     @NotNull(message = "please enter a price")
     public double getPrice() {
         return price;
@@ -126,6 +157,10 @@ public class Product implements Serializable{
         this.price = price;
     }
 
+    /**
+     * Transaction of a product.
+     * @return 
+     */
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     public Set<HolidayTransaction> getTrasaction() {
         return trasaction;

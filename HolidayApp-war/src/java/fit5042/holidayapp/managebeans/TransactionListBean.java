@@ -23,7 +23,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
- *
+ * Manage Bean of Transaction List page.
  * @author fengcilin
  */
 @Named(value = "transactionListBean")
@@ -68,7 +68,10 @@ public class TransactionListBean implements Serializable{
         this.user = user;
     }
 
-    
+    /**
+     * Retrieve all the transactions.
+     * @return 
+     */
     public List<HolidayTransaction> getAllTransactions(){
         try{
             return tm.findAllTransaction();
@@ -78,6 +81,10 @@ public class TransactionListBean implements Serializable{
         return null;
     }
     
+    /**
+     * Retrieve transactions of current login user.
+     * @return 
+     */
     public List<HolidayTransaction> getCurrentUserTransactions(){
         try {
             return tm.findTransactionOfPublic(currentUser.getUserId());
@@ -87,6 +94,10 @@ public class TransactionListBean implements Serializable{
         return null;
     }
     
+    /**
+     * Find a transaction by the user id get from the user details page.
+     * @return 
+     */
     public List<HolidayTransaction> getUserTransactions(){
          uid = Integer.valueOf(FacesContext.getCurrentInstance() 
                          .getExternalContext()

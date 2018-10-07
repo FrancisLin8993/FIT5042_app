@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 /**
- *
+ * Interface of the GUI
  * @author fengcilin
  */
 public interface TransactionSearcherGUI {

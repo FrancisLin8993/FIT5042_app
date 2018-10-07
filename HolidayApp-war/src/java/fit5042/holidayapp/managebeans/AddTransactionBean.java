@@ -27,7 +27,7 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 
 /**
- *
+ * Manage Bean of Adding a transaction(booking a product)
  * @author fengcilin
  */
 @Named(value = "addTransactionBean")
@@ -130,6 +130,7 @@ public class AddTransactionBean implements Serializable {
     @PostConstruct
     public void init(){
         
+        //get the product going to added into the new transaction from product page.
         pid = Integer.valueOf(FacesContext.getCurrentInstance() 
                          .getExternalContext()
                          .getRequestParameterMap()
@@ -138,7 +139,7 @@ public class AddTransactionBean implements Serializable {
         
         try{
             product = pm.findProductById(pid);
-            
+            //get the current user.
             String email = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
             this.user = um.findUserByEmail(email);
         }
@@ -148,6 +149,10 @@ public class AddTransactionBean implements Serializable {
         
     }
     
+    /**
+     * Add a new transaction of current login user.
+     * @return 
+     */
     public String bookProduct(){
         this.transaction = new HolidayTransaction();
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

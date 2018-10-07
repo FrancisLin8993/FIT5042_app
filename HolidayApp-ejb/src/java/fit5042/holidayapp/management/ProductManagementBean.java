@@ -15,7 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- *
+ * The Product Management EJB
  * @author fengcilin
  */
 @Stateless
@@ -23,10 +23,12 @@ public class ProductManagementBean implements ProductManagement{
 
     @PersistenceContext
     private EntityManager em;
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
     
+    /**
+     * Find all products in the system.
+     * @return A List of all products.
+     * @throws Exception 
+     */
     @Override
     public List<Product> findAllProducts() throws Exception {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -38,6 +40,12 @@ public class ProductManagementBean implements ProductManagement{
         
     }
 
+    /**
+     * Find a product by its id.
+     * @param id
+     * @return
+     * @throws Exception 
+     */
     @Override
     public Product findProductById(int id) throws Exception {
         Product product = em.find(Product.class, id);
@@ -45,11 +53,21 @@ public class ProductManagementBean implements ProductManagement{
         return product;
     }
 
+    /**
+     * Add a product into the system.
+     * @param product
+     * @throws Exception 
+     */
     @Override
     public void addProduct(Product product) throws Exception {
         em.persist(product);
     }
 
+    /**
+     * Remove a product in the system.
+     * @param id
+     * @throws Exception 
+     */
     @Override
     public void removeProduct(int id) throws Exception {
         Product product = this.findProductById(id);
@@ -62,6 +80,11 @@ public class ProductManagementBean implements ProductManagement{
     }
     
 
+    /**
+     * Update a product in the system.
+     * @param product
+     * @throws Exception 
+     */
     @Override
     public void updateProduct(Product product) throws Exception {
         em.merge(product);

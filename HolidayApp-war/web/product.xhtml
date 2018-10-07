@@ -38,6 +38,7 @@ and open the template in the editor.
                         
                         <hr />
                         <p>
+                            <!--Only public user can book a product -->
                             <ui:fragment rendered="#{request.isUserInRole('Public')}">
                                 
                                 <h:link value="Book This Package" outcome="booking" class="btn btn-primary">

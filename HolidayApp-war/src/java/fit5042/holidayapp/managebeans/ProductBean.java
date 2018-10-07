@@ -22,7 +22,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
 /**
- *
+ * Manage Bean dealing with product management pages.
  * @author fengcilin
  */
 @Named(value = "productBean")
@@ -138,7 +138,7 @@ public class ProductBean implements Serializable{
     }
     
     public String addProduct() {
-       
+        //Product start date must be earlier than end date
         try {
             if(product.getStartDate().compareTo(product.getEndDate()) >= 0)
             {
@@ -168,7 +168,7 @@ public class ProductBean implements Serializable{
         
         try {
             pm.updateProduct(editProduct);
-            
+            message = "Product has updated.";
             return "/HolidayApp-war/productlist?faces-redirect=true.xhtml";
         } catch (Exception ex) {
             Logger.getLogger(ProductBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -177,6 +177,10 @@ public class ProductBean implements Serializable{
         }
     }
     
+    /**
+     * Check whether a product has related transactions.
+     * @return 
+     */
     public boolean isProductHasTransactions(){
         try{
             return tm.findTransactionOfProduct(product.getId()).size() > 0;
@@ -192,6 +196,7 @@ public class ProductBean implements Serializable{
         this.product = product;
         try 
         {
+            //Product cannot be removed if it has transactions.
             if (isProductHasTransactions() == true)
             {
                 message = "Sorry, A product with transaction records cannot be removed.";
@@ -216,9 +221,7 @@ public class ProductBean implements Serializable{
         return startDate.compareTo(endDate) < 0;
     }
     
-    /**
-     * Creates a new instance of productBean
-     */
+    
     public ProductBean() {
         
     }

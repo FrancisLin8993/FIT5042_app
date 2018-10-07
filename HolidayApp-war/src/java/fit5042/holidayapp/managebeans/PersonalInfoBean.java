@@ -15,7 +15,7 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 
 /**
- *
+ * Manage Bean of personal information page.
  * @author fengcilin
  */
 @Named(value = "personalInfoBean")
@@ -36,12 +36,11 @@ public class PersonalInfoBean implements Serializable {
     }
     
     
-    /**
-     * Creates a new instance of PersonalInfoBean
-     */
+    
     public PersonalInfoBean() {
     }
     
+    //Get the current login user.
     @PostConstruct
     public void init(){
         this.email = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();

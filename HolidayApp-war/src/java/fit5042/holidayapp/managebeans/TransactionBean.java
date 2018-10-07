@@ -27,7 +27,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
- *
+ * Manage Bean of Transaction details page.
  * @author fengcilin
  */
 @Named(value = "transactionBean")
@@ -66,13 +66,13 @@ public class TransactionBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        
+        //Get the transaction number from the transaction list page.
         tno = Integer.valueOf(FacesContext.getCurrentInstance() 
                          .getExternalContext()
                          .getRequestParameterMap()
                          .get("tno"));
         
-        
+        //Retrieve the corresponding transaction by transaction number.
         try{
             transaction = getTransactionById(tno);
         }
@@ -110,6 +110,10 @@ public class TransactionBean implements Serializable{
         return tm.findTransactionById(id);
     }
     
+    /**
+     * Update Transaction status.
+     * @return 
+     */
     public String updateStatus(){
         this.transaction.setStatus(status);
         try {
@@ -121,6 +125,10 @@ public class TransactionBean implements Serializable{
         return null;
     }
     
+    /**
+     * Cancel Transaction(By public user).
+     * @return 
+     */
     public String cancelTransaction(){
         this.transaction.setStatus(TransactionStatus.Cancelled);
         try {
