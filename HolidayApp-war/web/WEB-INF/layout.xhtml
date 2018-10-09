@@ -82,7 +82,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <ui:fragment rendered="#{not empty request.remoteUser}">
                                 <li><a href="#">Welcome! #{request.remoteUser}</a></li>
-                                <li><h:form ><h:commandLink value="Log Out" action="#{logOutBean.logOut()}" class="btn btn-default"></h:commandLink></h:form></li>
+                                <li><h:form ><h:panelGroup><h:commandLink value="Log Out" action="#{logOutBean.logOut()}" class="btn btn-default"></h:commandLink></h:panelGroup></h:form></li>
                             </ui:fragment>
                             <ui:fragment rendered="#{empty request.remoteUser}">
                                 <li><a href="/HolidayApp-war/Public/index.xhtml">Log In</a></li>

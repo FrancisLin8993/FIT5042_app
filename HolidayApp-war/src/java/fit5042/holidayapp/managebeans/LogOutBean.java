@@ -22,9 +22,9 @@ public class LogOutBean implements Serializable {
     public LogOutBean() {
     }
     
-    public String logOut(){
+    public void logOut(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "index";
+        //return "HolidayApp-war/faces/index?facesredirect=true.xhtml";
     }
     
 }

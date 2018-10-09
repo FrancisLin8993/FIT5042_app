@@ -119,6 +119,9 @@ public class ProductBean implements Serializable{
         this.pm = pm;
     }
     
+    /**
+     * Retrieve all the products.
+     */
     public void getAllProducts(){
         try{
             productList = pm.findAllProducts();
@@ -128,11 +131,13 @@ public class ProductBean implements Serializable{
     }
     
     public String displayProductDetail(Product product){
+        message = "";
         this.product = product;
         return "/product?faces-redirect=true.xhtml";
     }
     
     public String redirectAddProductPage(){
+        message = "";
         this.product = new Product();
         return "/Worker/addproduct?faces-redirect=true.xhtml";
     }
@@ -149,6 +154,7 @@ public class ProductBean implements Serializable{
                 pm.addProduct(product);
                 setProduct(null);
                 getAllProducts();   
+                message = "Product has added.";
             }
                      
         } catch (Exception ex) {
@@ -158,7 +164,7 @@ public class ProductBean implements Serializable{
     }
     
     public String redirectEditProductPage(Product product){
-        
+        message = "";
         this.editProduct = product;
         
         return "/Worker/editproduct?faces-redirect=true.xhtml";

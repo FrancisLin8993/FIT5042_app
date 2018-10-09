@@ -187,17 +187,20 @@ public class UserBean implements Serializable {
     }
     
     public String displayUserDetail(HolidayUser user){
+        message = "";
         this.user = user;
         return "/Worker/user?faces-redirect=true.xhtml";
     }
     
     public String redirectAddPublicPage(){
+        message = "";
         this.customer = new HolidayPublic();
         this.address = new Address();
         return "/Worker/addpublic?faces-redirect=true.xhtml";
     }
     
-    public String redirectAddWorkerPage(){        
+    public String redirectAddWorkerPage(){ 
+        message = "";
         this.worker = new HolidayWorker();
         this.address = new Address();
         return "/Worker/addworker?faces-redirect=true.xhtml";
@@ -251,7 +254,7 @@ public class UserBean implements Serializable {
     
     
     public String redirectEditUserPage(HolidayUser user){
-        
+        message = "";
         this.editUser = user;
         
         return "/Worker/edituser?faces-redirect=true.xhtml";
