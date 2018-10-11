@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  * Manage Bean dealing with log out.
@@ -22,9 +23,9 @@ public class LogOutBean implements Serializable {
     public LogOutBean() {
     }
     
-    public void logOut(){
+    public String logOut(){
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        //return "HolidayApp-war/faces/index?facesredirect=true.xhtml";
+        return "HolidayApp-war/faces/index?facesredirect=true.xhtml";
     }
     
 }
