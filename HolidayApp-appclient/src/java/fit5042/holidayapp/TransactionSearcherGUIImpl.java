@@ -82,10 +82,13 @@ public class TransactionSearcherGUIImpl extends JFrame implements TransactionSea
         this.statusField = new JTextField();
         this.productField = new JTextField();
         
+        nameField.setEditable(false);
         customerField.setEditable(false);
         descField.setEditable(false);
         statusField.setEditable(false);
         productField.setEditable(false);
+        
+        
         
         
         this.transactionTable = new JTable(new DefaultTableModel(TABLE_COLUMNS, 0));
@@ -102,7 +105,7 @@ public class TransactionSearcherGUIImpl extends JFrame implements TransactionSea
         propertyTableColumnModel.getColumn(5).setPreferredWidth(100);
         
         this.typeComboBox = new JComboBox(TransactionType.values());
-        this.typeComboBox.addItem("");
+        this.typeComboBox.setEditable(false);
 
          this.inputPanel = new JPanel();
         this.buttonPanel = new JPanel();
